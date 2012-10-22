@@ -1,0 +1,52 @@
+{%extends "base.html"%}
+{%block title%}My Profile{%endblock%}
+{%block topBar %}
+  <li><a href="files/examples/hero.html#about">Profile</a></li>
+  <li><a href="files/examples/hero.html#contact">Notifications{%block ntfCount%}<span class="badge badge-important">2</span>{%endblock%}</a></li>
+  <li><a href="files/examples/hero.html#contact">Messages{%block msgCount%}<span class="badge badge-important">2</span>{%endblock%</a></li>
+{%endblock%}
+{%block session%}
+  <button type="submit" class="btn pull-right">
+    <i class="icon-user"></i>
+    Hgeg
+  </button>
+{%endblock%}
+{%block content%}
+<div class="row">
+  <div id="info" class="span4">
+      <h4>{{p.user.username}}'s Profile:</h4><br>
+    <div class="hero-unit">
+      <div class="row-fluid">
+          <div class="span6">
+            <div class="well" style=" width: 100px; height: 100px;">
+              <img id="profile_pic" src="{{p.photo}}" style=" width: 100px; height: 100px;">
+            </div>
+          </div>
+          <div class="span6">
+            <strong>Name:<br></strong>{{p.name}}<br>
+            <strong>Joined:<br></strong>{{p.join_date}}<br>
+            <strong>Visited:<br></strong>{{p.seen_count}} time{{p.seeen_count|pluralize}}<br>
+          </div>
+          <br>
+      </div>
+          <strong>Bio:</strong><pre class="bio">
+{{p.bio}}
+</pre>
+    </div>
+  </div>
+  <div id="display" class="span8">
+    <h4>{{p.user.username}}'s Display:</h4><br>
+    <div class="hero-unit">
+        <div class="row-fluid">
+          <div class="span4">
+          </div>
+          <div class="span2">
+            <img src="/files/img/{{gender}}.png" style=" width: 200px; height: 261px;">
+          </div>
+          <div class="span4">
+          </div>
+         </div> 
+    </div>
+  </div>
+</div>
+{%endblock%}

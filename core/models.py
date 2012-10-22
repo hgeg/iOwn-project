@@ -17,10 +17,11 @@ plans = ['Free Plan', 'Premium Plan', 'Platinium Plan']
 
 class Person(models.Model): 
   #User information
-  user = models.ForeignKey(User)
+  user      = models.ForeignKey(User)
   name      = models.CharField(max_length = 120)
   bio       = models.TextField()
-  photo     = models.CharField(max_length = 100,default="default.jpg")
+  photo     = models.CharField(max_length = 100,default="/files/img/default_avatar.jpg")
+  gender    = models.CharField(max_length = 1)
   
   #social data
   boxes         = models.ManyToManyField('Widget')
@@ -34,7 +35,6 @@ class Person(models.Model):
   seen_count  = models.IntegerField(default=0)
   join_date   = models.DateTimeField(auto_now=True)
   plan        = models.IntegerField(default=0)
-
 
 class Brand(models.Model):
   #Core information
