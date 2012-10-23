@@ -527,7 +527,7 @@ h6 {
   font-family: 'Telex', sans-serif;
   font-weight: bold;
   line-height: 1;
-  color: #317eac;
+  color: #5B5847;
   text-rendering: optimizelegibility;
 }
 h1 small,
@@ -3486,7 +3486,7 @@ input[type="submit"].btn.btn-mini {
 .navbar {
   overflow: visible;
   margin-bottom: 20px;
-  color: #f5f5f5;
+  color: #cc5d4c;
   *position: relative;
   *z-index: 2;
 }
@@ -3494,15 +3494,8 @@ input[type="submit"].btn.btn-mini {
   min-height: 50px;
   padding-left: 20px;
   padding-right: 20px;
-  background-color: #45aeea;
-  background-image: -moz-linear-gradient(top, #54b4eb, #2fa4e7);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#54b4eb), to(#2fa4e7));
-  background-image: -webkit-linear-gradient(top, #54b4eb, #2fa4e7);
-  background-image: -o-linear-gradient(top, #54b4eb, #2fa4e7);
-  background-image: linear-gradient(to bottom, #54b4eb, #2fa4e7);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff54b4eb', endColorstr='#ff2fa4e7', GradientType=0);
-  border: 1px solid #1684c2;
+  background-color: #cc5d43;
+  border: 1px solid #c28416;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
@@ -3692,7 +3685,7 @@ input[type="submit"].btn.btn-mini {
 .navbar .nav > li > a {
   float: none;
   padding: 15px 15px 15px;
-  color: #ffffff;
+  color: #fffec6;
   text-decoration: none;
   text-shadow: 0 1px 0 #54b4eb;
 }
@@ -4990,12 +4983,12 @@ div.subnav-fixed {
 .btn-primary {
   color: #ffffff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  background-color: #3daae9;
-  background-image: -moz-linear-gradient(top, #46aeea, #2fa4e7);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#46aeea), to(#2fa4e7));
-  background-image: -webkit-linear-gradient(top, #46aeea, #2fa4e7);
-  background-image: -o-linear-gradient(top, #46aeea, #2fa4e7);
-  background-image: linear-gradient(to bottom, #46aeea, #2fa4e7);
+  background-color: #CC5D4C;
+  background-image: -moz-linear-gradient(center top , #CC5D4C, #AC3D2C);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#CC5D4C), to(#AC3D2C));
+  background-image: -webkit-linear-gradient(top, #CC5D4C, #AC3D2C);
+  background-image: -o-linear-gradient(top, #CC5D4C, #AC3D2C);
+  background-image: linear-gradient(to bottom, #CC5D4C, #AC3D2C);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff46aeea', endColorstr='#ff2fa4e7', GradientType=0);
   border-color: #2fa4e7 #2fa4e7 #157ab5;

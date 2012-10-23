@@ -32,7 +32,7 @@
 
   <body>
 
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -40,7 +40,8 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="files/examples/hero.html#">iOwn</a>
+          <li class="nav">
+            <img src="/files/img/logo.png"></img></li>
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="active"><a href="files/examples/hero.html#">Home</a></li>
@@ -56,9 +57,9 @@
               </li>
             </ul>
             {%block session%}
-            <form class="navbar-form pull-right">
-              <input class="span2" type="text" placeholder="Email">
-              <input class="span2" type="password" placeholder="Password">
+            <form method="post" action="/signin/" class="navbar-form pull-right">
+              <input class="span2" name="user" type="text" placeholder="User Name">
+              <input class="span2" name="pass" type="password" placeholder="Password">
               <button type="submit" class="btn">Sign in</button>
             </form>
             {%endblock%}
