@@ -1,5 +1,5 @@
 from django.conf.urls.defaults import patterns, include, url
-from ihave import settings
+import settings
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
@@ -7,19 +7,19 @@ from ihave import settings
 
 urlpatterns = patterns('',
     # Examples:
-    # url(r'^$', 'ihave.views.home', name='home'),
-    # url(r'^ihave/', include('ihave.foo.urls')),
+    # url(r'^$', 'views.home', name='home'),
+    # url(r'^', include('ihave.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
-    (r'^$', 'ihave.core.views.landing'),
-    (r'^index/$', 'ihave.core.views.landing'),
-    (r'^signup/$', 'ihave.core.views.signup'),
-    (r'^signin/$', 'ihave.core.views.login'),
-    (r'^me/$', 'ihave.core.views.profile'),
-    (r'^(?P<user>.*)/$', 'ihave.core.views.profile'),
+    (r'^$', 'core.views.landing'),
+    (r'^index/$', 'core.views.landing'),
+    (r'^signup/$', 'core.views.signup'),
+    (r'^signin/$', 'core.views.login'),
+    (r'^me/$', 'core.views.profile'),
+    (r'^(?P<user>.*)/$', 'core.views.profile'),
     (r'^files/(?P<path>.*)$', 'django.views.static.serve', {'document_root':settings.MEDIA_ROOT}),
 )

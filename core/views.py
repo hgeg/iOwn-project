@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.views.decorators.csrf import csrf_protect,csrf_exempt
-from ihave.core.models import *
+from core.models import *
 
 #helper methods
 def me(request):
@@ -18,23 +18,22 @@ def me(request):
 def landing(request):
   return render_to_response('index.html')
 
-@login_required
+#@login_required
 def profile(request, user=""):
-  try:
-    if(user==""):
-      user = request.user
-      p = Person.objects.get(user = user.pk)
-      return render_to_response('me.html',{'p':p,'myUser':request.user.username})
+    if user=="":
+      #user = request.user
+      #p = Person.objects.get(user = user.pk)
+      p = Person.objects.all()[0]
+      return render_to_response('profile.html',{'p':p,'title':"%s's profile"%(p.user.username)})
 
     u = User.objects.get(username=user)
     p = Person.objects.get(user = u)
     if u == request.user:
-      return render_to_response('me.html',{'p':p,'myUser':request.user.username})
+      return render_to_response('profile.html',{'p':p,'myUser':request.user.username})
     else:
       p.seen_count += 1
       p.save()
       return render_to_response('profile.html',{'p':p,'myUser':request.user.username})
-  except: return landing(request)
 
 def login_page(request):
   return render_to_response('login.html')
