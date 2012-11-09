@@ -1,40 +1,374 @@
-{%extends "base.html"%}
-{%block content%}
-      <!-- Main hero unit for a primary marketing message or call to action -->
-      <div class="well well-strip">
-        <h3>Share what you own, see what your friends own...</h3>
-        <p>I have is a unique application lets you share what you have with your friends. You can add thousands of products available, as well as items that only you own. </p>
-        <p><a class="btn btn-primary btn-large">Learn more »</a></p>
-      </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Equpi - Share Your Style</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-      <!-- Example row of columns -->
-      <div class="row">
-        <div class="span4">
-          <h4>Hepinizi paramla döverim.</h4>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn" href="files/examples/hero.html#">View details »</a></p>
-        </div>
-        <div class="span4">
-          <h4>iPhone'um var.</h4>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn" href="files/examples/hero.html#">View details »</a></p>
-       </div>
-        <div class="span4">
-          <h4>Sign Up Now:</h4>
-            <form method="post" action="/signup/" class="navbar-form pull-right">
-              {% csrf_token %}
-              <input name="user" type="text" placeholder="User Name">
-              <input name="name" type="text" placeholder="Full Name">
-              <input name="email" type="email" placeholder="E-mail">
-              <input name="pass" type="password" placeholder="Password">
-              <input name="repass" type="password" placeholder="Retype Password">
-              <select name="gender">
-                <option disabled selected value="n">Select Sex:</option>
-                <option value="m">Male</option>
-                <option value="f">Female</option>
-              </select>
-              <button type="submit" class="btn btn-primary">Sign up</button>
-            </form>
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link href="inspiritas.css" rel="stylesheet">
+
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="bootstrap/js/bootstrap-modal.js"></script>
+    <script src="bootstrap/js/bootstrap-tooltip.js"></script>
+
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+         _gaq.push(['_setAccount', 'UA-23019901-1']);
+         _gaq.push(['_setDomainName', "bootswatch.com"]);
+         _gaq.push(['_setAllowLinker', true]);
+         _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+
+    <script language="javascript"> 
+      function toggle() {
+        var ele = document.getElementById("tech");
+        var ele2 = document.getElementById("belongingsMenu")
+        var text = document.getElementById("displayText");
+        if(ele.style.display == "block") {
+              ele.style.display = "none";
+              ele2.style.display = "block";
+          text.innerHTML = "Show Tech Belongings";
+          }
+        else {
+          ele.style.display = "block";
+          ele2.style.display = "none";
+          text.innerHTML = "Go Back";
+        }
+      } 
+    </script>
+</head>
+
+<body>
+
+<!-- Navbar
+  ================================================== -->
+<div class="navbar navbar-static-top navbar-inverse">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+
+      <a class="brand" href="#"></a>
+      <span class="tagline">Share your style</span>
+
+      <div class="nav-collapse collapse" id="main-menu">
+        <div class="auth pull-right">
+            <img class="avatar" src="images/littke.png">
+            <span class="name">Onur Senture</span><br/>
+            <span class="links">
+                <a href="#">Account</a>
+                <a href="#">Logout</a>
+            </span>
         </div>
       </div>
-{%endblock%}
+    </div>
+  </div>
+</div>
+
+<div class="container">
+    <div class="row-fluid">
+        <div class="span3">
+            <aside>
+
+                <nav>
+                    <ul class="nav">
+                      <li class="selected">
+                        <a href=""><i class="icon-play"></i> Your Belongings</a>
+                      </li>
+                      <li>
+                        <a href=""><i class="icon-user icon-white"></i> Get Random One</a>
+                      </li>
+                    </ul>
+                </nav>
+
+
+                <nav>
+                    <ul class="nav">
+                      <li>
+                         <img class="avatar" src="images/onur_left.png">
+                      </li>
+                      <li>
+                        <a href=""></i> Onur Senture</a>
+                      </li>
+                      <li>
+                        <a href="">Co-founder of Gonnasphere</a>
+                      </li>
+                      <li>
+                        <p>
+                          <a href=""><img src="images/facebook.png" class="img-rounded"> Onur's Facebook</a>
+                          <a href=""><img src="images/twitter.png" class="img-rounded"> Onur's Twitter</a>
+                        </p>
+                      </li>
+                    </ul>
+                </nav>
+
+
+            </aside>
+        </div>
+
+        <div class="span9" id="content-wrapper">
+            <div id="content">
+
+                <!-- Navbar
+                ================================================== -->
+                <section id="stats">
+                  <header>
+                    <div class="pull-right">
+                        <a class="btn btn-small">Edit</a>
+                        <a class="btn btn-small">Share</a>
+                    </div>
+                    <h1>Your Belongings</h1>
+                  </header>
+                  <div class="row-fluid">
+                    <div class="span2">
+                        <div class="kpi">1035</div>
+                        <div><small>total profile view</small></div>
+                    </div>
+                    <div class="span2">
+                        <div class="kpi">23</div>
+                        <div><small>items shared</small></div>
+                    </div>
+                    <div class="span2">
+                        <div class="kpi">12</div>
+                        <div><small>items bought</small></div>
+                    </div>
+                    <div class="span2">
+                        <div class="kpi">19</div>
+                        <div><small>items sold</small></div>
+                    </div>
+                  </div>
+                </section>
+              
+                <!-- Olaylar
+                ================================================== -->
+                <section id="tech" style="display:none;">
+                  <div class="sub-header">
+                    <h2>&ensp;</h2>
+                  </div>
+                  <div class="row-fluid">
+                    <div class="span12">
+                      <table class="table">
+                        <thead>
+                            <td>
+                            
+                            </td>
+                            <td>
+                              <a class="btn btn-primary btn-large" id="displayText" href="javascript:toggle();"></a>
+                            </td>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="primary">
+                              <div class="row-fluid row-fluid-alternate-bg">
+                              <div class="media">
+                                <a class="pull-left" href="#">
+                                  <img class="media-object" src="http://placehold.it/320x320">
+                                </a>
+                                <div class="media-body">
+                                  <h4 class="media-heading">iPhone 5</h4> 
+                                    Onur claimed that he has <strong>iPhone 5</strong> on <strong>Nov 8</strong>.</br>
+                                    And <strong>7</strong> people love it.
+                                    <br/><br/>
+                                    <a class="btn btn-small"><i class="icon-heart icon-black"></i> love</a>
+                                    <a class="btn btn-small"><i class="icon-shopping-cart icon-black"></i> buy iPhone5</a>
+                                </td> 
+                                </div>
+                              </div>
+                            </div>
+                            </td>
+                            <td></td>
+                          </tr>
+                            
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </section>
+
+                 <section id="belongingsMenu">
+                  <div class="sub-header">
+                    <h2>&ensp;</h2>
+                  </div>
+                  <div class="row-fluid">
+                    <div class="span12">
+                      <div class="hero-unit">
+                        <table>
+                        <caption><h3 class="pull-right">Technology</h3></caption>
+                        <thead>
+                          <tr>
+                            <th>
+                              <p>
+                                <a id="displayText" href="javascript:toggle();">
+                                  <img src="http://placehold.it/220x220" class="img-rounded">
+                                </a>
+                              </p>
+                            </th>
+                            <th>
+                              <p>
+                                <a id="displayText" href="javascript:toggle();">
+                                  <img src="http://placehold.it/220x220" class="img-rounded">
+                                </a>
+                              </p>
+                            </th>
+                            <th>
+                              <p>
+
+                                <a id="displayText" href="javascript:toggle();">
+                                  <img src="http://placehold.it/220x220" class="img-rounded">
+                                </a>
+                              </p>
+                            </th>
+                            <th>
+                              <p>
+                                <a id="displayText">
+                                    <img href="#myModal" role="button" data-toggle="modal" src="http://placehold.it/220x220" class="img-rounded">
+                                </a>
+                              </p>
+                            </th>
+                          </tr>
+                        </thead>
+                      </table>
+                      <table>
+                        <caption><h3 class="pull-right">Apparel</h3></caption>
+                        <thead>
+                          <tr>
+                            <th>
+                              <p>
+                                <a id="displayText" href="javascript:toggle();">
+                                  <img src="http://placehold.it/220x220" class="img-rounded">
+                                </a>
+                              </p>
+                            </th>
+                            <th>
+                              <p>
+                                <a id="displayText" href="javascript:toggle();">
+                                  <img src="http://placehold.it/220x220" class="img-rounded">
+                                </a>
+                              </p>
+                            </th>
+                            <th>
+                              <p>
+
+                                <a id="displayText" href="javascript:toggle();">
+                                  <img src="http://placehold.it/220x220" class="img-rounded">
+                                </a>
+                              </p>
+                            </th>
+                            <th>
+                              <p>
+                                <a id="displayText">
+                                    <img href="#myModal" role="button" data-toggle="modal" src="http://placehold.it/220x220" class="img-rounded">
+                                </a>
+                              </p>
+                            </th>
+                          </tr>
+                        </thead>
+                      </table>
+                      <table>
+                        <caption><h3 class="pull-right">Luxury</h3></caption>
+                        <thead>
+                          <tr>
+                            <th>
+                              <p>
+                                <a id="displayText" href="javascript:toggle();">
+                                  <img src="http://placehold.it/220x220" class="img-rounded">
+                                </a>
+                              </p>
+                            </th>
+                            <th>
+                              <p>
+                                <a id="displayText" href="javascript:toggle();">
+                                  <img src="http://placehold.it/220x220" class="img-rounded">
+                                </a>
+                              </p>
+                            </th>
+                            <th>
+                              <p>
+
+                                <a id="displayText" href="javascript:toggle();">
+                                  <img src="http://placehold.it/220x220" class="img-rounded">
+                                </a>
+                              </p>
+                            </th>
+                            <th>
+                              <p>
+                                <a id="displayText">
+                                    <img href="#myModal" role="button" data-toggle="modal" src="http://placehold.it/220x220" class="img-rounded">
+                                </a>
+                              </p>
+                            </th>
+                          </tr>
+                        </thead>
+                      </table>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+            </div>
+        </div>
+    </div>
+</div><!-- /container -->
+
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Add or Change Item</h3>
+  </div>
+  <div class="modal-body">
+    <form>
+      <fieldset>
+        <label>Name of your belonging</label>
+        <input type="text" placeholder="Type the name…"></br>
+        <img src="http://placehold.it/100x100" class="img-rounded">
+        <button type="submit" class="btn">Upload Image</button>
+      </fieldset>
+    </form>
+  </div>
+    <div class="modal-body">
+      <h3>Or choose from the history</h3>
+      <img src="http://placehold.it/40x40" class="img-rounded">
+      <img src="http://placehold.it/40x40" class="img-rounded">
+      <img src="http://placehold.it/40x40" class="img-rounded">
+      <img src="http://placehold.it/40x40" class="img-rounded">
+      <img src="http://placehold.it/40x40" class="img-rounded">
+      <img src="http://placehold.it/40x40" class="img-rounded">
+      <img src="http://placehold.it/40x40" class="img-rounded">
+      <img src="http://placehold.it/40x40" class="img-rounded">
+      
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <button class="btn btn-primary">Save changes</button>
+  </div>
+</div>
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="js/highcharts.js"></script>
+    <script src="js/inspiritas.js"></script>
+    <script src="bootstrap/js/bootstrap-dropdown.js"></script>
+    <script src="bootstrap/js/bootstrap-collapse.js"></script>
+
+
+  </body>
+</html>
