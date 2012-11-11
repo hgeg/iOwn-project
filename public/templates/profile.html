@@ -69,8 +69,8 @@
 
       <div class="nav-collapse collapse" id="main-menu">
         <div class="auth pull-right">
-          <img class="avatar" src="/files/images/avatar/{{p.avatarsmall}}.png">
-            <span class="name">{{fullname}}</span><br/>
+          <img class="avatar" src="/files/images/avatar/{{p.pho}}">
+            <span class="name">{{p.name}}</span><br/>
             <span class="links">
                 <a href="#">Account</a>
                 <a href="#">Logout</a>
@@ -101,7 +101,7 @@
                 <nav>
                     <ul class="nav">
                       <li>
-                      <img class="avatar" src="/files/images/avatar/{{p.photo}}.png">
+                      <img class="avatar" src="/files/images/avatar/{{p.photo}}">
                       </li>
                       <li>
                       <a href=""></i>{{p.name}}</a>
@@ -143,12 +143,12 @@
                         <div><small>total profile view</small></div>
                     </div>
                     <div class="span2">
-                      <div class="kpi">{{p.shared}}</div>
+                      <div class="kpi">{{p.item_count}}</div>
                         <div><small>items shared</small></div>
                     </div>
                     <div class="span2">
-                      <div class="kpi">{{p.bought}}</div>
-                        <div><small>items bought</small></div>
+                      <div class="kpi">{{p.last_seen}}</div>
+                        <div><small>last seen</small></div>
                     </div>
                   </div>
                 </section>
@@ -206,12 +206,12 @@
                   <div class="row-fluid">
                     <div class="span12">
                       <div class="hero-unit">
-                        {%for k,v in categories%}
-                        <table>
-                          <caption><h3 class="pull-right">{{k}}</h3></caption>
+                        {%for b in p.belongings.all%}
+                        <table style="width:100%;">
+                          <caption><h3 class="pull-right">{{b.name}}</h3></caption>
                         <thead>
-                          <tr>
-                            {% for i in v %}
+                          <tr class="pull-right">
+                            {% for i in b.boxes.all%}
                             <th>
                               <p>
                                 <a id="displayText" href="javascript:toggle();">
@@ -223,7 +223,7 @@
                             <th>
                               <p>
                                 <a id="displayText">
-                                    <img href="#myModal" role="button" data-toggle="modal" src="/files/images/220x220" class="img-rounded">
+                                    <img href="#myModal" role="button" data-toggle="modal" src="/files/images/100x100" class="img-rounded">
                                 </a>
                               </p>
                             </th>
