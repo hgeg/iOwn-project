@@ -18,22 +18,24 @@ def me(request):
 def landing(request):
   return render_to_response('index.html')
 
-#@login_required
+@login_required
 def profile(request, user=""):
     if user=="":
-      #user = request.user
-      #p = Person.objects.get(user = user.pk)
-      p = Person.objects.all()[0]
+      user = request.user
+      p = Person.objects.get(user = user.pk)
       return render_to_response('profile.html',{'p':p,'title':"%s's profile"%(p.user.username)})
 
-    u = User.objects.get(username=user)
-    p = Person.objects.get(user = u)
-    if u == request.user:
-      return render_to_response('profile.html',{'p':p,'myUser':request.user.username})
-    else:
-      p.seen_count += 1
-      p.save()
-      return render_to_response('profile.html',{'p':p,'myUser':request.user.username})
+    try:
+      u = User.objects.get(username=user)
+      p = Person.objects.get(user = u)
+      if u == request.user:
+        return render_to_response('me.html',{'p':p,'myUser':request.user.username})
+      else:
+        p.seen_count += 1
+        p.save()
+        return render_to_response('profile.html',{'p':p,'myUser':request.user.username})
+    except: 
+      return render_to_response('404.html',{'p':user,'myUser':request.user.username})
 
 
 @csrf_exempt
@@ -48,7 +50,7 @@ def login(request):
       auth.login(request, user)
       return HttpResponseRedirect("/%s"%usr)
     else:
-      return render_to_response("login.html",{'message':'User is not activated'})
+      return render_to_response("login.html",{'message':'This user is not activated'})
   else:
     return render_to_response("login.html",{'message':'Invalid username or password'})
   
@@ -75,7 +77,8 @@ def signup(request):
   repass = request.POST["repass"]
   eml = request.POST["email"]
   name = request.POST["name"]
-  if reduce(lambda x,y:x*y,map(len,(usr,pas,repass,eml,name)))==0:
+  sex = request.POST["gender"]
+  if reduce(lambda x,y:x*y,map(len,(usr,pas,repass,eml,name)))==0 or sex=='n':
     return render_to_response('signup.html',{'message':'All fields are required.','email':eml,'name':name,'user':usr})
   if pas==repass:
     if len(User.objects.filter(username=usr))==0:
@@ -83,8 +86,8 @@ def signup(request):
         user = User.objects.create(username=usr,email=eml)
         user.set_password(pas)
         user.save()
-        Person.objects.create(name=name,gender="n",user=user)
-        return HttpResponseRedirect('/me/')
+        Person.objects.create(name=name,gender=sex,user=user)
+        return render_to_response('success.html')
       else:
         return render_to_response('signup.html',{'message':'This email address exists.','email':eml,'name':name,'user':usr})
     else:

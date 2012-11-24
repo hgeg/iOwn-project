@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Equpi - Sign In</title>
+    <title>Equpi - 404</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -15,8 +15,6 @@
     <link href="/files/inspiritas.css" rel="stylesheet">
 
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="/files/bootstrap/js/bootstrap-modal.js"></script>
-    <script src="/files/bootstrap/js/bootstrap-tooltip.js"></script>
 
     <script type="text/javascript">
       var _gaq = _gaq || [];
@@ -64,29 +62,10 @@
 
 <div class="container">
   <div class="hero-unit">
-    <h2>Sign in</h2> 
-    <hr>
-      <form method="POST" action="/signin/">
-        {%csrf_token%}
-        <label class= "text-warning">{{message}}</label>
-        <div class="control-group">
-          <label class="control-label" for="inputUser">User Name</label>
-          <div class="controls">
-            <input name="user" type="text" value="{{user}}" id="inputUser" placeholder="User">
-          </div>
-          <label class="control-label" for="inputPassword">Password</label>
-          <div class="controls">
-            <input name="pass" type="password" id="inputPassword" placeholder="Password">
-          </div>
-          <div class="controls">
-            <button type="submit" class="btn btn-success">Sign in</button>
-          </div>
-        </div>
-      </form>
+    <h2>Not Found!</h2> 
+    <img src="/files/images/404.jpg" class="img-polaroid"/>
+    <p>The page <i>"{{p}}"</i> does not exist.</p>
   </div>
-       
-
-  
 </div>
 
     <!-- Le javascript
@@ -101,3 +80,4 @@
 
   </body>
 </html>
+

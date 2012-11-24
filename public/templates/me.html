@@ -1,5 +1,5 @@
 {%extends "mainframe.html"%}
-{%block title%}Equpi - {{p.user.username}}'{%if p.user.username|last != 's'%}s{%endif%} profile{%endblock%}
+{%block title%}Equpi - Your Profile{%endblock%}
 {%block content%}
 <div class="container">
     <div class="row-fluid">
@@ -9,7 +9,7 @@
                 <nav>
                     <ul class="nav">
                       <li class="selected">
-                      <a href=""><i class="icon-play"></i>{%if p.gender == 'm'%}His{%else%}Her{%endif%} Belongings</a>
+                      <a href=""><i class="icon-play"></i>Your Belongings</a>
                       </li>
                       <li>
                         <a href=""><i class="icon-user icon-white"></i> View Random Profile</a>
@@ -54,7 +54,7 @@
                         <a class="btn btn-small">Tweet</a>
                         <a class="btn btn-small">Share on Facebook</a>
                     </div>
-                    <h1>{%if p.gender == 'm'%}His{%else%}Her{%endif%} Belongings</h1>
+                    <h1>Your  Belongings</h1>
                   </header>
                   <div class="row-fluid">
                     <div class="span2">
@@ -141,7 +141,9 @@
                             {%empty%}
                             <th>
                               <p>
-                                No items in this category...
+                                <a id="displayText">
+                                    <img href="#myModal" role="button" data-toggle="modal" src="/files/images/100x100" class="img-rounded">
+                                </a>
                               </p>
                             </th>
                             {%endfor%}

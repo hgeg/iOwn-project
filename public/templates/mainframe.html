@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Equpi - Sign In</title>
+    <title>{%block title%}{%endblock%}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -49,43 +49,33 @@
 
       <a class="brand" href="/"></a>
       <span class="tagline">Share your style</span>
-
+      {%if myUser %}
+      <div class="nav-collapse collapse" id="main-menu">
+        <div class="auth pull-right">
+          <img class="avatar" src="/files/images/avatar/s_{{p.photo}}">
+            <span class="name">{{p.name}}</span><br/>
+            <span class="links">
+                <a href="#">Account</a>
+                <a href="#">Logout</a>
+            </span>
+        </div>
+      </div>
+      {%else%}
       <div class="nav-collapse collapse" id="main-menu">
         <div class="auth pull-right">
             <h5 class="links">
                 Already have a page?&nbsp;  
-                <a href="/signin">Log in</a>
+                <a href="#">Log in</a>
             </h5>
         </div>
       </div>
+      {%endif%}
     </div>
   </div>
 </div>
 
-<div class="container">
-  <div class="hero-unit">
-    <h2>Sign in</h2> 
-    <hr>
-      <form method="POST" action="/signin/">
-        {%csrf_token%}
-        <label class= "text-warning">{{message}}</label>
-        <div class="control-group">
-          <label class="control-label" for="inputUser">User Name</label>
-          <div class="controls">
-            <input name="user" type="text" value="{{user}}" id="inputUser" placeholder="User">
-          </div>
-          <label class="control-label" for="inputPassword">Password</label>
-          <div class="controls">
-            <input name="pass" type="password" id="inputPassword" placeholder="Password">
-          </div>
-          <div class="controls">
-            <button type="submit" class="btn btn-success">Sign in</button>
-          </div>
-        </div>
-      </form>
-  </div>
-       
-
+{%block content%}
+{%endblock%}
   
 </div>
 
