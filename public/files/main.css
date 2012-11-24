@@ -100,7 +100,7 @@ textarea {
 
 
 .main {
-	background: url(../img/BG/BG_subtlenet2.png) top left repeat;
+	background: url(/files/images/landing/BG/BG_subtlenet2.png) top left repeat;
 	width:100%;
 	height:auto;
 	border-top: #CC5D4C 4px solid;
@@ -202,7 +202,7 @@ p {
 			height:150px;
 			border-right:1px #CCC;
 			vertical-align: middle;
-			background:	url(../img/Bg_Subscribe.png) no-repeat center center;
+			background:	url(/files/images/landing/Bg_Subscribe.png) no-repeat center center;
 			position:absolute;
 			
 	
@@ -247,7 +247,7 @@ p {
 			width : 70px;
 			height : 52px;
 			margin : 8px 15px 15px 10px;
-			background : #CC5D4C url(../img/arrow.png) no-repeat center;
+			background : #CC5D4C url(/files/images/landing/arrow.png) no-repeat center;
 			border : 1px solid #CC5D4C;
 			/*box-shadow : 0 1px 0 0 rgba(255, 255, 255, 0.3) inset, 0 20px 30px 0 rgba(255, 255, 255, 0.2) inset, 0 4px 0 0 rgba(0, 0, 0, 0.15);*/
 			border-radius : 4px;
@@ -281,7 +281,7 @@ p {
 		}
 		ul#countdown li {
 			display : inline-block;
-			/*background : url('../images/circle.png') top left no-repeat transparent;*/
+			/*background : url('./images/circle.png') top left no-repeat transparent;*/
 			width : 70px;
 			margin-bottom : 20px;
 			text-align : center;
@@ -328,7 +328,7 @@ p {
 .ri-grid-loading{
 	width: 100px;
 	height: 100px;
-	background: transparent url(../img/loading.gif) no-repeat center center;
+	background: transparent url(/files/images/landing/loading.gif) no-repeat center center;
 }
 
 .ri-grid ul {
