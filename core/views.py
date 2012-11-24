@@ -22,8 +22,8 @@ def landing(request):
 def profile(request, user=""):
     myUser = request.user
     me = Person.objects.get(user = myUser.pk)
-    if user=="":
-      return render_to_response('profile.html',{'p':me,'me':me})
+    if user in ('','me'):
+      return render_to_response('me.html',{'p':me,'me':me})
     try:
       u = User.objects.get(username=user)
       p = Person.objects.get(user = u)

@@ -51,8 +51,11 @@
       {%if me %}
       <div class="nav-collapse collapse" id="main-menu">
         <div class="auth pull-right">
-          <img class="avatar" src="/files/images/avatar/s_{{me.photo}}">
-            <span class="name">{{me.name}}</span><br/>
+          <a href="/me">
+            <img class="avatar" src="/files/images/avatar/s_{{me.photo}}">
+            <span class="name">{{me.name}}</span>
+          </a>
+          <br/>
             <span class="links">
                 <a href="/settings">Account</a>
                 <a href="/logout">Logout</a>

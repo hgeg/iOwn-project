@@ -18,8 +18,8 @@ class Person(models.Model):
   user      = models.ForeignKey(User)
   name      = models.CharField(max_length = 120)
   bio       = models.TextField()
-  photo     = models.CharField(max_length = 100,default="/files/img/default_avatar.jpg")
-  cover     = models.CharField(max_length = 100,default="/files/img/default_cover.jpg")
+  photo     = models.CharField(max_length = 100,default="placeholder.jpg")
+  cover     = models.CharField(max_length = 100,default="cover.jpg")
   gender    = models.CharField(max_length = 1)
   
   #social data
