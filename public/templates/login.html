@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Equpi Registration</title>
+    <title>Equpi - Registration</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -12,7 +12,7 @@
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <link href="inspiritas.css" rel="stylesheet">
+    <link href="/files/inspiritas.css" rel="stylesheet">
 
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script src="/files/bootstrap/js/bootstrap-modal.js"></script>
@@ -47,14 +47,15 @@
         <span class="icon-bar"></span>
       </a>
 
-      <a class="brand" href="#"></a>
+      <a class="brand" href="/"></a>
+      <span class="tagline">Share your style</span>
 
       <div class="nav-collapse collapse" id="main-menu">
         <div class="auth pull-right">
-            <span class="links">
-                Already have a page?
+            <h5 class="links">
+                Already have a page?&nbsp;  
                 <a href="#">Log in</a>
-            </span>
+            </h5>
         </div>
       </div>
     </div>
@@ -62,39 +63,40 @@
 </div>
 
 <div class="container">
-
   <div class="hero-unit">
-    <h2>Registration - Step 2</h2> 
-    <p>Sign up to create your personal profile that shows people to every cool belongings you have.</p>
+    <h2>Registration</h2> 
+    <p>Sign up to create your personal profile that shows cool belongings you have.</p>
     <hr>
-      <form class="form-inline">
-        <form class="form-horizontal">
+      <form method="POST" action="/signup/">
+        {%csrf_token%}
+        <label class= "text-warning">{{message}}</label>
         <div class="control-group">
           <label class="control-label" for="inputEmail">Email Address</label>
           <div class="controls">
-            <input type="text" id="inputEmail" placeholder="Email">
+            <input name="email" type="text" value="{{email}}" id="inputEmail" placeholder="Email">
           </div>
-        </div>
-        <div class="control-group">
           <label class="control-label" for="inputPassword">Create a Password</label>
           <div class="controls">
-            <input type="password" id="inputPassword" placeholder="Password">
+            <input name="pass" type="password" id="inputPassword" placeholder="Password">
           </div>
-        </div>
-        <div class="control-group">
+          <label class="control-label" for="inputPassword">Retype Your Password</label>
+          <div class="controls">
+            <input name="repass" type="password" id="inputPassword" placeholder="Password Again">
+          </div>
+          <label class="control-label" for="inputPassword">Your Name</label>
+          <div class="controls">
+            <input name="name" type="text" value="{{name}}" id="inputName" placeholder="Full Name">
+          </div>
           <label class="control-label" for="inputPassword">Select a Equpi Username</label>
           <div class="controls">
-            <input type="text" id="inputUsername" placeholder="Equpi.com/Your-Choice">
+            <input name="user" type="text" id="inputUsername" value="{{user}}" placeholder="Equpi.com/Your-Choice">
           </div>
-        </div>
-        <div class="control-group">
           <div class="controls">
             <button type="submit" class="btn btn-success">Create your Equpi Page</button>
           </div>
         </div>
       </form>
-    </form>
-    <h5>By signing up you agree to our Terms of Service and Privacy Policy.</h5>
+    <h5>By signing up you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</h5>
   </div>
        
 

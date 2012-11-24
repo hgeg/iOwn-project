@@ -7546,6 +7546,19 @@ body {
   text-transform: uppercase;
   text-shadow: 0 1px 1px #000000;
 }
+.navbar .auth h5.links {
+  margin-left: 10px;
+  color: #f9f9f9;
+  font-size: 11px;
+  font-family: "Lucida Grande", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.navbar .auth h5.links a {
+  color: #f9601c;
+  font-size: 11px;
+}
+.navbar .auth h5.links a + a {
+  margin-left: 3px;
+}
 .navbar .auth span.links {
   margin-left: 10px;
 }

@@ -35,11 +35,11 @@ def profile(request, user=""):
       p.save()
       return render_to_response('profile.html',{'p':p,'myUser':request.user.username})
 
-def login_page(request):
-  return render_to_response('login.html')
 
 @csrf_exempt
 def login(request):
+  if request.method=="GET":
+    return render_to_response('login.html')
   usr = request.POST["user"]
   pas = request.POST["pass"]
   user = auth.authenticate(username=usr, password=pas)
@@ -65,31 +65,32 @@ def settings_page(request):
 @login_required
 def save_settings(request): pass
 
-def signup_page(request):
-  return render_to_response('signup.html')
-
 @csrf_exempt
 def signup(request):
+  if request.method=="GET":
+    return render_to_response('signup.html')
+  
   usr = request.POST["user"]
   pas = request.POST["pass"]
   repass = request.POST["repass"]
   eml = request.POST["email"]
   name = request.POST["name"]
-  gender = request.POST["gender"]
+  if reduce(lambda x,y:x*y,map(len,(usr,pas,repass,eml,name)))==0:
+    return render_to_response('signup.html',{'message':'All fields are required.','email':eml,'name':name,'user':usr})
   if pas==repass:
-    if len(User.objects.filter())==0:
-      if gender!="n":
+    if len(User.objects.filter(username=usr))==0:
+      if len(User.objects.filter(email=eml))==0:
         user = User.objects.create(username=usr,email=eml)
         user.set_password(pas)
         user.save()
-        Person.objects.create(name=name,gender=gender,user=user)
+        Person.objects.create(name=name,gender="n",user=user)
         return HttpResponseRedirect('/me/')
       else:
-        return render_to_response('signup.html',{'message':'Please select a gender.'})
+        return render_to_response('signup.html',{'message':'This email address exists.','email':eml,'name':name,'user':usr})
     else:
-      return render_to_response('signup.html',{'message':'This username exists.'})
+      return render_to_response('signup.html',{'message':'This username exists.','email':eml,'name':name,'user':usr})
   else:
-    return render_to_response('signup.html',{'message':'Passwords do not match.'})
+    return render_to_response('signup.html',{'message':'Passwords do not match.','email':eml,'name':name,'user':usr})
 
 #push notification methods
 @login_required
