@@ -46,17 +46,16 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-
       <a class="brand" href="/"></a>
       <span class="tagline">Share your style</span>
-      {%if myUser %}
+      {%if me %}
       <div class="nav-collapse collapse" id="main-menu">
         <div class="auth pull-right">
-          <img class="avatar" src="/files/images/avatar/s_{{p.photo}}">
-            <span class="name">{{p.name}}</span><br/>
+          <img class="avatar" src="/files/images/avatar/s_{{me.photo}}">
+            <span class="name">{{me.name}}</span><br/>
             <span class="links">
-                <a href="#">Account</a>
-                <a href="#">Logout</a>
+                <a href="/settings">Account</a>
+                <a href="/logout">Logout</a>
             </span>
         </div>
       </div>

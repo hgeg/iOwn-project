@@ -20,26 +20,26 @@ def landing(request):
 
 @login_required
 def profile(request, user=""):
+    myUser = request.user
+    me = Person.objects.get(user = myUser.pk)
     if user=="":
-      user = request.user
-      p = Person.objects.get(user = user.pk)
-      return render_to_response('profile.html',{'p':p,'title':"%s's profile"%(p.user.username)})
-
+      return render_to_response('profile.html',{'p':me,'me':me})
     try:
       u = User.objects.get(username=user)
       p = Person.objects.get(user = u)
       if u == request.user:
-        return render_to_response('me.html',{'p':p,'myUser':request.user.username})
+        return render_to_response('me.html',{'p':p,'me':me})
       else:
         p.seen_count += 1
         p.save()
-        return render_to_response('profile.html',{'p':p,'myUser':request.user.username})
+        return render_to_response('profile.html',{'p':p,'me':me})
     except: 
-      return render_to_response('404.html',{'p':user,'myUser':request.user.username})
+      return render_to_response('404.html',{'p':user,'me':me})
 
 
 @csrf_exempt
 def login(request):
+  if request.user.is_authenticated(): return HttpResponseRedirect('/me')
   if request.method=="GET":
     return render_to_response('login.html')
   usr = request.POST["user"]
@@ -60,15 +60,16 @@ def logout(request):
     auth.logout(request)
   return HttpResponseRedirect("/")
 
-@login_required
-def settings_page(request):
-  return render_to_response('settings.html')
 
 @login_required
-def save_settings(request): pass
+def settings(request):
+  if request.method == 'GET':
+    return render_to_response('settings.html')
+  return render_to_response('settings.html','Your preferences are successfully saved.')
 
 @csrf_exempt
 def signup(request):
+  if request.user: return HttpResponseRedirect('/me')
   if request.method=="GET":
     return render_to_response('signup.html')
   
