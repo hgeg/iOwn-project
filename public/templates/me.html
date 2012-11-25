@@ -151,12 +151,22 @@ setInterval('lookup()',3000);
                           <caption><h3 class="pull-right">{{b.name}}</h3></caption>
                         <thead>
                           <tr class="pull-right">
-                            {% for i in b.boxes.all%}
+                            {%if b.boxes.all|length > 4 %}
+                            <th>
+                              <p>
+                                <a id="displayText">
+                                  <img href="#myModal" onclick="$('#addFrom').attr('action','/add/{{b.name}}/');" role="button" data-toggle="modal" src="/files/images/icons/more.png" class="img-polaroid"><br>
+                                  <span style="font-size:8px;">More...</span>
+                                </a>
+                              </p>
+                            </th>
+                            {%endif%}
+                            {% for i in b.boxes.all|slice:":4"%}
                             <th>
                               <p>
                                 <a id="displayText" href="javascript:toggle();">
-                                  <img src="{{i.item.meta.image}}" class="img-polaroid" style="width:100px;"><br>
-                                  <span style="font-size:8px;">{{i.item.meta.name|slice:":20"}}...</span>
+                                  <img src="{{i.item.meta.image}}" class="img-polaroid" style="height:48px;"><br>
+                                  <span style="font-size:8px;">{{i.item.meta.name|slice:":12"}}...</span>
                                 </a>
                               </p>
                             </th>
@@ -164,7 +174,7 @@ setInterval('lookup()',3000);
                             <th>
                               <p>
                                 <a id="displayText">
-                                  <img href="#myModal" onclick="$('#addFrom').attr('action','/add/{{b.name}}/');" role="button" data-toggle="modal" src="/files/images/100x100" class="img-rounded"><br>
+                                  <img href="#myModal" onclick="$('#addFrom').attr('action','/add/{{b.name}}/');" role="button" data-toggle="modal" src="/files/images/icons/arti2.png" class="img-polaroid"><br>
                                   <span style="font-size:8px;">Add New...</span>
                                 </a>
                               </p>
@@ -173,6 +183,7 @@ setInterval('lookup()',3000);
                         </thead>
                       </table>
                       {%endfor%}
+                          <a style="text-align:center;">Add New Category...</a>
                       </div>
                     </div>
                   </div>

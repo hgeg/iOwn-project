@@ -151,13 +151,7 @@ def updateMessages(request):
   p = me(request)
   messages = p.messages.filter(state=0).order_by("date")
   return HttpResponse(serializers.serialize('json',messages),content_type="application/json")
-
-#invitation views  
-def invite(request):
-  return render_to_response('invite.html')
   
-def sendinvite(request):
-  return render_to_response('invitesuccess.html')  
 
   
 
