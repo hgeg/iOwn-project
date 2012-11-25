@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from django.views.decorators.csrf import csrf_protect,csrf_exempt
 from core.models import *
+import json,product
 
 #helper methods
 def me(request):
@@ -36,6 +37,45 @@ def profile(request, user=""):
     except: 
       return render_to_response('404.html',{'p':user,'me':me})
 
+@login_required
+@csrf_exempt
+def add_item(request,cat):
+  name = request.POST['name']
+  data = product.query(name.replace(' ','+'))
+  title = data['title'].split(' - ')[0] 
+  try:
+    b = Brand.objects.get(name=title)
+  except:
+    try:
+      photo=data['images'][0]['thumbnails'][0]['link']
+    except:
+      photo="/files/image/no_image.jpg"
+    b = Brand.objects.create(name=title,image=photo,buy_link=data['link'])
+    b.save()
+  
+  description = data['description'] if len(data['description'])<141 else "%s..."%data['description'][:137]
+
+  i = Item.objects.create(meta=b,note=description,photo="/files/image/no_image.jpg");
+  i.save()
+  
+  bo = Box.objects.create(item=i)
+  bo.save()
+
+  me = Person.objects.get(user=request.user.pk)
+  bl = me.belongings.get(name=cat)
+  bl.boxes.add(bo)
+  return HttpResponseRedirect('/me')
+
+def lookup(request,q):
+  data = product.query(q.replace(' ','+'))
+  name = data['title'].split(' - ')[0] 
+  description = data['description'] if len(data['description'])<150 else "%s..."%data['description'][:147]
+  try:
+    photo=data['images'][0]['thumbnails'][0]['link']
+  except:
+    photo="/files/image/100x100"
+  newdata = { 'name':name, 'description':description, 'photo':photo}
+  return HttpResponse(json.dumps(newdata),mimetype="application/json")
 
 @csrf_exempt
 def login(request):
