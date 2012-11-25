@@ -28,6 +28,7 @@ def me(request):
 
 #request handler methods
 def landing(request):
+  if request.user.is_authenticated(): return HttpResponseRedirect('/me')
   return render_to_response('index.html')
 
 @login_required
@@ -51,8 +52,9 @@ def profile(request, user=""):
 @login_required
 @csrf_exempt
 def add_item(request,cat):
-  name = request.POST['name']
-  data = product.query(name.replace(' ','+'))
+  if request.method == 'GET': return HttpResponseRedirect('/me/')
+  name = request.POST['product']
+  data = product.query(name.replace(' ','+'))[0]
   title = data['title'].split(' - ')[0] 
   try:
     b = Brand.objects.get(name=title)
@@ -82,6 +84,7 @@ def add_item(request,cat):
 @login_required
 @csrf_exempt
 def add_category(request):
+  if request.method == 'GET': return HttpResponseRedirect('/me/')
   category = request.POST['cat']
   b = Category.objects.create(name=category)
   b.save()

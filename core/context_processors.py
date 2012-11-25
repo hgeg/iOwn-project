@@ -1,5 +1,5 @@
 from models import Person
-all_categories = ['Tech','Clothing','Accesories','Pets','Antiquity','Collectibles','Vehicles','Musical Instruments']
+all_categories = ['Wishlist','Tech','Clothing','Accesories','Pets','Antiquity','Collectibles','Vehicles','Musical Instruments']
 
 def categories(request):
     me = Person.objects.get(user=request.user.pk)

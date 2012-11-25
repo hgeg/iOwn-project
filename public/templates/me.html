@@ -13,7 +13,7 @@ function lookup(){
           m.html('<span class="muted">No items found...<span>');
         for(i=0;i<data.length;i++) {
           d = data[i] 
-          suggestion = '<br><li class="active"><div class="row-fluid"><div class="span2"><img id="simage" src="'+d.photo+'" class="img-polaroid" height="100px" width="100px"/></div><div class="span10"><strong>Name:</strong> <span>'+d.name+'</span><br><strong>Description:</strong> <span>'+d.description+'</span></div></div></li>'
+          suggestion = '<br><li><a href="#" onclick="$(\'#product\').attr(\'value\',\''+d.name+'\');$(this).closest(\'form\').submit()" style="color:#000033;"><div class="row-fluid"><div class="span2"><img id="simage" src="'+d.photo+'" class="img-polaroid" height="100px" width="100px"/></div><div class="span10"><strong>Name:</strong> <span>'+d.name+'</span><br><strong>Description:</strong> <span>'+d.description+'</span></div></div></a></li>'
           m.append(suggestion);
         }
         oldQuery = $('#lookupQuery').attr('value');
@@ -223,12 +223,12 @@ setInterval('lookup()',1000);
         <input type="text" id="lookupQuery" name="name" placeholder="Type the name...">&nbsp;&nbsp;<img id="loading" src="/files/images/loading.gif"></br>
         <br>
         <strong>Suggestions:</strong>
-        <ul class="nav nav-pills nav-stacked" id="suggestions">
+        <ul class="nav nav-list" id="suggestions">
         </ul>
         <!--<img src="/files/images/100x100" name="image" class="img-rounded">
         <button class="btn">Upload Image</button>-->
         <br>
-      <input type="submit" value="Add" class="btn btn-primary">
+        <input type="text" value="" name="product" id="product" style="display:none;">
       </fieldset>
     </form>
     <h4>or</h4>
