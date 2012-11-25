@@ -109,7 +109,7 @@ def settings(request):
 
 @csrf_exempt
 def signup(request):
-  if request.user: return HttpResponseRedirect('/me')
+  if request.user.is_authenticated(): return HttpResponseRedirect('/me')
   if request.method=="GET":
     return render_to_response('signup.html')
   
