@@ -68,6 +68,7 @@ class Box(models.Model):
 class Category(models.Model):
   boxes = models.ManyToManyField('Box')
   name  = models.CharField(max_length=100)
+  #last_change  = models.DateTimeField(auto_now_add=True)
 
 class Info(models.Model):
   poster    = models.ForeignKey('Person')

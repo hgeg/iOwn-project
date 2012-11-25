@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*- 
 # Create your views here.
 from django.shortcuts import render_to_response
+from django.template import RequestContext
 from django.http import HttpResponse,HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -8,6 +9,16 @@ from django.contrib import auth
 from django.views.decorators.csrf import csrf_protect,csrf_exempt
 from core.models import *
 import json,product
+
+
+@login_required
+def update_seen(request):
+  try:
+    user = request.user
+    p = Person.objects.get(user = user.pk)
+    p.save()
+  except: pass
+  return HttpResponse()
 
 #helper methods
 def me(request):
@@ -24,12 +35,12 @@ def profile(request, user=""):
     myUser = request.user
     me = Person.objects.get(user = myUser.pk)
     if user in ('','me'):
-      return render_to_response('me.html',{'p':me,'me':me})
+      return render_to_response('me.html',{'p':me,'me':me},context_instance=RequestContext(request))
     try:
       u = User.objects.get(username=user)
       p = Person.objects.get(user = u)
       if u == request.user:
-        return render_to_response('me.html',{'p':p,'me':me})
+        return render_to_response('me.html',{'p':p,'me':me},context_instance=RequestContext(request))
       else:
         p.seen_count += 1
         p.save()
@@ -64,31 +75,47 @@ def add_item(request,cat):
   me = Person.objects.get(user=request.user.pk)
   bl = me.belongings.get(name=cat)
   bl.boxes.add(bo)
+  me.item_count +=1
+  me.save()
+  return HttpResponseRedirect('/me')
+
+@login_required
+@csrf_exempt
+def add_category(request):
+  category = request.POST['cat']
+  b = Category.objects.create(name=category)
+  b.save()
+  me = Person.objects.get(user=request.user.pk)
+  me.belongings.add(b)
   return HttpResponseRedirect('/me')
 
 def lookup(request,q):
-  data = product.query(q.replace(' ','+'))
-  name = data['title'].split(' - ')[0] 
-  description = data['description'] if len(data['description'])<150 else "%s..."%data['description'][:147]
-  try:
-    photo=data['images'][0]['thumbnails'][0]['link']
-  except:
-    photo="/files/image/100x100"
-  newdata = { 'name':name, 'description':description, 'photo':photo}
+  result = product.query(q.replace(' ','+'))
+  newdata = []
+  for data in result:
+    name = data['title'].split(' - ')[0] 
+    description = data['description'] if len(data['description'])<150 else "%s..."%data['description'][:147]
+    try:
+      photo=data['images'][0]['thumbnails'][0]['link']
+    except:
+      photo="/files/image/100x100"
+    newdata.append({ 'name':name, 'description':description, 'photo':photo})
   return HttpResponse(json.dumps(newdata),mimetype="application/json")
 
 @csrf_exempt
 def login(request):
   if request.user.is_authenticated(): return HttpResponseRedirect('/me')
   if request.method=="GET":
-    return render_to_response('login.html')
+    return render_to_response('login.html',{'n':request.GET['next']})
   usr = request.POST["user"]
   pas = request.POST["pass"]
+  nxt = request.POST["next"]
   user = auth.authenticate(username=usr, password=pas)
   if user is not None:
     if user.is_active:
       auth.login(request, user)
-      return HttpResponseRedirect("/%s"%usr)
+      update_seen(request)
+      return HttpResponseRedirect("%s"%nxt)
     else:
       return render_to_response("login.html",{'message':'This user is not activated'})
   else:

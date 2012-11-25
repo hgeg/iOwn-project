@@ -6,19 +6,28 @@ oldQuery = ""
 function lookup(){
   if($('#lookupQuery').attr('value').length>2 && $('#lookupQuery').attr('value')!=oldQuery) {
     $('#loading').show();
-    $.ajax({url:'/lookup/'+$('#lookupQuery').attr('value')+'/',success: function(d){
-        $('#simage').attr('src',d.photo);
-        $('#sname').html(d.name);
-        $('#sdesc').html(d.description);
+    $.ajax({url:'/lookup/'+$('#lookupQuery').attr('value')+'/',success: function(data){
+        m = $('#suggestions');
+        m.empty();
+        if(data.length==0)
+          m.html('<span class="muted">No items found...<span>');
+        for(i=0;i<data.length;i++) {
+          d = data[i] 
+          suggestion = '<br><li class="active"><div class="row-fluid"><div class="span2"><img id="simage" src="'+d.photo+'" class="img-polaroid" height="100px" width="100px"/></div><div class="span10"><strong>Name:</strong> <span>'+d.name+'</span><br><strong>Description:</strong> <span>'+d.description+'</span></div></div></li>'
+          m.append(suggestion);
+        }
         oldQuery = $('#lookupQuery').attr('value');
         $('#loading').hide();
       }
     });
+  }else if($('#lookupQuery').attr('value') == ''){
+    m = $('#suggestions');
+    m.html('<span class="muted">No items<span>');
   }
 }
 $(document).ready(function(){
 $('#loading').hide();
-setInterval('lookup()',3000);
+setInterval('lookup()',1000);
 });
 </script>
 {%endblock%}
@@ -183,7 +192,14 @@ setInterval('lookup()',3000);
                         </thead>
                       </table>
                       {%endfor%}
-                          <a style="text-align:center;">Add New Category...</a>
+                      <br>
+                        <div class="row" style="text-align:center">
+                          <div style="span12">
+                                <a id="displayText">
+                                  <button  style="font-color:white;" class="btn btn-primary" href="#categoryModal" onclick="$('#addFrom').attr('action','/add/{{b.name}}/');" role="button" data-toggle="modal">+ Add New Category</button>
+                                </a>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -205,17 +221,10 @@ setInterval('lookup()',3000);
     <form class="form-inline" method="POST" action="/add/" id="addFrom">
       <fieldset>
         <input type="text" id="lookupQuery" name="name" placeholder="Type the name...">&nbsp;&nbsp;<img id="loading" src="/files/images/loading.gif"></br>
-        <strong>Suggestion:</strong>
-        <div id="suggestion" class="row-fluid">
-          <div class="span2">
-            <img id="simage" src="/files/images/100x100" class="img-polaroid" height="100px" width="100px"/>
-          </div>
-          <div class="span10">
-            <strong>Name:</strong> <span id="sname"></span>
-            <br>
-            <strong>Description:</strong> <span id="sdesc"></span>
-          </div>
-        </div>
+        <br>
+        <strong>Suggestions:</strong>
+        <ul class="nav nav-pills nav-stacked" id="suggestions">
+        </ul>
         <!--<img src="/files/images/100x100" name="image" class="img-rounded">
         <button class="btn">Upload Image</button>-->
         <br>
@@ -259,6 +268,29 @@ setInterval('lookup()',3000);
   </div>
   -->
   <div class="modal-footer">
+  </div>
+</div>
+<div id="categoryModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="cateogryModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Add a Category</h3>
+  </div>
+  <div class="modal-body">
+    <label>Choose a new category to add:</label>
+    <form class="form-horizontal" method="POST" action="/category:add/">
+      {%csrf_token%}
+      <fieldset>
+        <select name="cat">
+          {%for c in categories%}
+            <option value="{{c}}">{{c}}</option>
+          {%endfor%}
+        </select>
+        <br>
+      </fieldset>
+  </div>
+  <div class="modal-footer">
+      <input type="submit" value="Add" class="btn btn-primary">
+    </form>
   </div>
 </div>
 {%endblock%}

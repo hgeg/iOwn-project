@@ -68,6 +68,7 @@
     <hr>
       <form method="POST" action="/signin/">
         {%csrf_token%}
+        <input name="next" type="text" style="display:none" value="{{n}}">
         <label class= "text-warning">{{message}}</label>
         <div class="control-group">
           <label class="control-label" for="inputUser">User Name</label>

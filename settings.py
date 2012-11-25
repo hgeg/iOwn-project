@@ -138,3 +138,5 @@ LOGGING = {
         },
     }
 }
+
+TEMPLATE_CONTEXT_PROCESSORS = ('core.context_processors.categories',)
