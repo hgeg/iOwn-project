@@ -13,7 +13,7 @@ function lookup(){
           m.html('<span class="muted">No items found...<span>');
         for(i=0;i<data.length;i++) {
           d = data[i] 
-          suggestion = '<br><li><a href="#" onclick="$(\'#product\').attr(\'value\',\''+d.name+'\');$(this).closest(\'form\').submit()" style="color:#000033;"><div class="row-fluid"><div class="span2"><img id="simage" src="'+d.photo+'" class="img-polaroid" height="100px" width="100px"/></div><div class="span10"><strong>Name:</strong> <span>'+d.name+'</span><br><strong>Description:</strong> <span>'+d.description+'</span></div></div></a></li>'
+          suggestion = '<br><li><a href="#" onclick="$(\'#product\').attr(\'value\',\''+escape(d.name)+'\');$(this).closest(\'form\').submit()" style="color:#000033;"><div class="row-fluid"><div class="span2"><img id="simage" src="'+d.photo+'" class="img-polaroid" height="100px" width="100px"/></div><div class="span10"><strong>Name:</strong> <span>'+d.name+'</span><br><strong>Description:</strong> <span>'+d.description+'</span></div></div></a></li>'
           m.append(suggestion);
         }
         oldQuery = $('#lookupQuery').attr('value');
