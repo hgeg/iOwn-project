@@ -26,7 +26,7 @@ def me(request):
   p = Person.objects.get(user = user.pk)
   return p
 
-def getGlobal(request):
+def getGlobal():
   try:
     g = Global.objects.all()[0]
     if not g:
