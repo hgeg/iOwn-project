@@ -109,7 +109,9 @@ def lookup(request,q):
 def login(request):
   if request.user.is_authenticated(): return HttpResponseRedirect('/me')
   if request.method=="GET":
-    return render_to_response('login.html',{'n':request.GET['next']})
+    try: n = request.GET['next']
+    except: n = ''
+    return render_to_response('login.html',{'n':n})
   usr = request.POST["user"]
   pas = request.POST["pass"]
   nxt = request.POST["next"]

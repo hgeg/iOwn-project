@@ -46,9 +46,9 @@ class Person(models.Model):
 
 class Brand(models.Model):
   #Core information
-  name     = models.CharField(max_length = 120,primary_key=True)
-  image    = models.CharField(max_length = 100)
-  buy_link = models.URLField(blank=True)
+  name     = models.CharField(max_length = 180,primary_key=True)
+  image    = models.TextField()
+  buy_link = models.TextField()
 
 class Item(models.Model):
   #Meta information
