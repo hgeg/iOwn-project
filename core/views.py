@@ -95,6 +95,7 @@ def add_item(request,cat):
   me = Person.objects.get(user=request.user.pk)
   bl = me.belongings.get(name=cat)
   bl.boxes.add(bo)
+  bl.save()
   me.item_count +=1
   me.save()
   return HttpResponseRedirect('/me')

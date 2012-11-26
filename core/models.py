@@ -54,7 +54,7 @@ class Person(models.Model):
       wishlist = list(value.filter(name='Wishlist'))
     except:
       wishlist = []
-    return wishlist + list(value.filter(~Q(name='Wishlist')).order_by('last_change'))
+    return wishlist + list(value.filter(~Q(name='Wishlist')).order_by('last_change').reverse())
 
 class Brand(models.Model):
   #Core information
