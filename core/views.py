@@ -26,10 +26,21 @@ def me(request):
   p = Person.objects.get(user = user.pk)
   return p
 
+def getGlobal(request):
+  try:
+    g = Global.objects.all()[0]
+    if not g:
+      g = Global.objects.create()
+      g.save()
+  except:
+    g = Global.objects.create()
+    g.save()
+    return g
+
 #request handler methods
 def landing(request):
   if request.user.is_authenticated(): return HttpResponseRedirect('/me')
-  return render_to_response('index.html')
+  return render_to_response('index.html',{'opening':getGlobal().openings})
 
 @login_required
 def profile(request, user=""):
@@ -53,7 +64,8 @@ def profile(request, user=""):
 def settings(request):
     myUser = request.user
     me = Person.objects.get(user = myUser.pk)
-    return render_to_response('settings.html',{'me':me},context_instance=RequestContext(request))
+    if request.method == 'GET':
+      return render_to_response('settings.html',{'me':me,'p':me})
 
 @login_required
 @csrf_exempt
@@ -137,13 +149,6 @@ def logout(request):
   if request.user.is_authenticated:
     auth.logout(request)
   return HttpResponseRedirect("/")
-
-
-@login_required
-def settings(request):
-  if request.method == 'GET':
-    return render_to_response('settings.html')
-  return render_to_response('settings.html','Your preferences are successfully saved.')
 
 @csrf_exempt
 def signup(request):

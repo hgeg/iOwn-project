@@ -155,7 +155,7 @@ setInterval('lookup()',1000);
                   <div class="row-fluid">
                     <div class="span12">
                       <div class="hero-unit">
-                        {%for b in p.belongings.all|arrange%}
+                        {%for b in p.belongings.all%}
                         <table style="width:100%;">
                           <caption><h3 class="pull-right">{{b.name}}</h3></caption>
                         <thead>
