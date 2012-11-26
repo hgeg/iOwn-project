@@ -35,7 +35,7 @@ def getGlobal():
   except:
     g = Global.objects.create()
     g.save()
-    return g
+  return g
 
 #request handler methods
 def landing(request):
