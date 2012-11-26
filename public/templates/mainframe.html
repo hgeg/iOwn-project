@@ -55,7 +55,7 @@
         <span class="icon-bar"></span>
       </a>
       <a class="brand" href="/"></a>
-      <span class="tagline">Share your style</span>
+      <!--<span class="tagline">Share your style</span>-->
       {%if me %}
       <div class="nav-collapse collapse" id="main-menu">
         <div class="auth pull-right">
@@ -73,11 +73,23 @@
       <ul class="nav pull-right">
         <li class="divider-vertical"></li>
         <li> 
-        <a href="/notifications"><i class="icon-exclamation-sign icon-white"></i> Notifications <span class="badge badge-warning">3</span></a>
+        <a href="/notifications"><i class="icon-exclamation-sign icon-white"></i> Notifications 
+        {%if me.ntfCount > 0%}
+          <span class="badge badge-warning">
+           {{me.ntfCount}
+          </span>
+        {%endif%}
+        </a>
         </li>
         <li class="divider-vertical"></li>
         <li> 
-        <a href="/notifications"><i class="icon-envelope icon-white"></i> Messages <span class="badge badge-warning">1</span></a>
+        <a href="/notifications"><i class="icon-envelope icon-white"></i> Messages 
+        {%if me.msgCount > 0%}
+          <span class="badge badge-warning">
+           {{me.msgCount}
+          </span>
+        {%endif%}
+        </a>
         </li>
         <li class="divider-vertical"></li>
       </ul>

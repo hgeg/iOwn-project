@@ -9,6 +9,7 @@
 
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models import Q
 
 #static data and constants
 plans = ['Free Plan', 'Premium Plan', 'Platinium Plan']
@@ -47,6 +48,13 @@ class Person(models.Model):
 
   def ntfCount(self): return len(self.notifications.filter(state=0))
   def msgCount(self): return len(self.notifications.filter(state=0))
+  def belongingList(self):
+    value = self.belongings
+    try:
+      wishlist = list(value.filter(name='Wishlist'))
+    except:
+      wishlist = []
+    return wishlist + list(value.filter(~Q(name='Wishlist')).order_by('last_change'))
 
 class Brand(models.Model):
   #Core information

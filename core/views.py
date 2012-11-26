@@ -171,6 +171,8 @@ def signup(request):
         user.set_password(pas)
         user.save()
         Person.objects.create(name=name,gender=sex,user=user)
+        getGlobal().openings -=1
+        getGlobal.save()
         return render_to_response('success.html')
       else:
         return render_to_response('signup.html',{'message':'This email address exists.','email':eml,'name':name,'user':usr})

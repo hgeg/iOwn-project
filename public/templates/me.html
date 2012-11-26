@@ -95,8 +95,8 @@ setInterval('lookup()',1000);
                       <div class="kpi">{{p.item_count}}</div>
                         <div><small>items shared</small></div>
                     </div>
-                    <div class="span2">
-                      <div class="kpi">{{p.last_seen}}</div>
+                    <div class="span8">
+                      <div class="kpi">{{p.lastSeen}}</div>
                         <div><small>last seen</small></div>
                     </div>
                   </div>
@@ -155,7 +155,7 @@ setInterval('lookup()',1000);
                   <div class="row-fluid">
                     <div class="span12">
                       <div class="hero-unit">
-                        {%for b in p.belongings.all%}
+                        {%for b in p.belongingList%}
                         <table style="width:100%;">
                           <caption><h3 class="pull-right">{{b.name}}</h3></caption>
                         <thead>
