@@ -1,21 +1,6 @@
 
 $(document).ready(function(){
 
-$('.email').focus(function() {
-		if($(this).val() == 'enter your email...') {
-			$(this).val('');
-		}
-	});
-
-	$('.email').blur(function() {
-		if($(this).val() == '') {
-			$(this).val('enter your email...');
-		}
-	});
-
-
-
-});
 
 		<!--ImageGrid Script-->
 		

@@ -7507,7 +7507,7 @@ a.badge:hover {
  * Scaffolding overrides
  */
 body {
-  background: url('images/bg.png') repeat #edf0f2;
+  background: url("/files/images/landing/BG/BG_subtlenet2.png") repeat #edf0f2;
 }
 .navbar .brand {
   font-family: "League Gothic", "Museo Slab", "Helvetica Neue", Helvetica, arial, sans-serif;
