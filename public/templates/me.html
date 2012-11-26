@@ -96,7 +96,13 @@ setInterval('lookup()',1000);
                         <div><small>items shared</small></div>
                     </div>
                     <div class="span8">
-                      <div class="kpi">{{p.lastSeen}}</div>
+                      <div class="kpi">
+                        {%if p.last_change|timesince == "0 minutes"%}
+                          just now
+                        {%else%}
+                          {{p.last_change|timesince}} ago
+                        {%endif%}
+                      </div>
                         <div><small>last seen</small></div>
                     </div>
                   </div>
