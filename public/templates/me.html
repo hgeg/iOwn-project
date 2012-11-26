@@ -155,12 +155,12 @@ setInterval('lookup()',1000);
                   <div class="row-fluid">
                     <div class="span12">
                       <div class="hero-unit">
-                        {%for b in p.belongings.all%}
+                        {%for b in p.belongings.all|arrange%}
                         <table style="width:100%;">
                           <caption><h3 class="pull-right">{{b.name}}</h3></caption>
                         <thead>
                           <tr class="pull-right">
-                            {%if b.boxes.all|length > 4 %}
+                            {%if b.boxes.all|length > 5 %}
                             <th>
                               <p>
                                 <a id="displayText">
@@ -170,7 +170,7 @@ setInterval('lookup()',1000);
                               </p>
                             </th>
                             {%endif%}
-                            {% for i in b.boxes.all|slice:":4"%}
+                            {% for i in b.boxes.all|slice:":5"%}
                             <th>
                               <p>
                                 <a id="displayText" href="javascript:toggle();">

@@ -12,6 +12,10 @@ from django.contrib.auth.models import User
 
 #static data and constants
 plans = ['Free Plan', 'Premium Plan', 'Platinium Plan']
+  
+class Global(models.Model):
+  openings     =  models.IntegerField(default=20)
+  announcement = models.TextField(blank=True)
 
 class Person(models.Model): 
   #User information
@@ -31,8 +35,8 @@ class Person(models.Model):
   messages      = models.ManyToManyField('Info',related_name='msg')
 
   #profile information
-  last_change  = models.DateTimeField(auto_now_add=True)
-  join_date    = models.DateTimeField(auto_now=True)
+  last_change  = models.DateTimeField(auto_now=True)
+  join_date    = models.DateTimeField(auto_now_add=True)
   last_seen    = models.DateTimeField(auto_now_add=True)
   seen_count   = models.IntegerField(default=0)
   bought_count = models.IntegerField(default=0)
@@ -63,12 +67,12 @@ class Item(models.Model):
 
 class Box(models.Model):
   item  = models.ForeignKey('Item')
-  added = models.DateTimeField(auto_now=True)
+  added = models.DateTimeField(auto_now_add=True)
 
 class Category(models.Model):
   boxes = models.ManyToManyField('Box')
   name  = models.CharField(max_length=100)
-  #last_change  = models.DateTimeField(auto_now_add=True)
+  last_change  = models.DateTimeField(auto_now=True)
 
 class Info(models.Model):
   poster    = models.ForeignKey('Person')
