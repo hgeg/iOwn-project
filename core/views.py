@@ -50,6 +50,12 @@ def profile(request, user=""):
       return render_to_response('404.html',{'p':user,'me':me})
 
 @login_required
+def settings(request):
+    myUser = request.user
+    me = Person.objects.get(user = myUser.pk)
+    return render_to_response('settings.html',{'me':me},context_instance=RequestContext(request))
+
+@login_required
 @csrf_exempt
 def add_item(request,cat):
   if request.method == 'GET': return HttpResponseRedirect('/me/')
