@@ -52,13 +52,14 @@ $(function () {
 
     <div class="span9" id="content-wrapper">
       <div id="content">
-
+          <form method="post" action="/settings/">
+            {%csrf_token%}
                 <!-- Navbar
                 ================================================== -->
                 <section id="stats">
                   <header>
                     <div class="pull-right">
-                      <a class="btn btn-primary">Save Changes</a>
+                      <input type="submit" class="btn btn-primary" value="Save Changes">
                     </div>
                     <h1>Settings</h1>
                   </header>
@@ -69,8 +70,9 @@ $(function () {
 
                 <!-- Settings
                 ================================================== -->
-                <section id="belongingsMenu">
-
+               
+                <section id="formsection">
+                  
                   <div class="row-fluid">
                     <div class="span12">
                       <div class="hero-unit">
@@ -91,35 +93,39 @@ $(function () {
                                     <div class="span6">
                                       <label class="control-label">Profile Picture:</label>
                                       <div class="controls">
-                                        <img src="http://placehold.it/90x90" class="img-rounded"><button class="btn" type="button" style="margin-left:10px;">Change Picture</button>
+                                        <img src="/files/images/avatar/s_{{me.photo}}" style="width:48px;height:48px;" class="img-polaroid">
+                                        <button name="piclink" class="btn" type="button" style="margin-left:10px;">Change Picture</button>
+                                        <input type="text" name="photourl" value="{{me.photo}}" style="display:none">
                                       </div>
                                       <br/>
 
                                       <label class="control-label">Your bio:</label>
                                       <div class="controls">
-                                        <textarea rows="3"></textarea>                                  
+                                        <textarea style="resize:none;" name="bio" rows="3">{{me.bio}}</textarea>                                  
                                       </div>
                                     </div>
 
                                     <div class="span6">
                                       <label class="control-label">Your name:</label>
                                       <div class="controls">
-                                        <input name="name" type="text" value="{{name}}" id="inputName" placeholder="{{p.name}}">
+                                        <input name="name" type="text" value="{{me.name}}" id="inputName" placeholder="Enter your name" value="{{p.name}}">
                                       </div>
                                       <label class="control-label" for="inputPassword">Gender:</label>
                                       <div class="controls">
                                         <select name="gender">
-                                          <option value="m">Man</option>
-                                          <option value="f">Woman</option>
+                                          <option {%if me.gender == "m"%}selected{%endif%} value="m">Male</option>
+                                          <option {%if me.gender == "f"%}selected{%endif%} value="f">Female</option>
                                         </select>
                                       </div>
                                       <label class="control-label" for="inputPassword">Your Facebook URL:</label>
-                                      <div class="controls">
-                                        <input name="name" type="text" value="{{name}}" id="inputName" placeholder="facebook.com/example">
+                                      <div class ="input-prepend">
+                                        <span class="add-on">facebook.com/</span>
+                                        <input class="span6" name="fbuser" type="text" id="inputUsername" style="box-shadow:none;" value="{{me.fbuser}}" placeholder="">
                                       </div>
                                       <label class="control-label" for="inputPassword">Your Twitter username:</label>
-                                      <div class="controls">
-                                        <input name="name" type="text" value="{{name}}" id="inputName" placeholder="@example">
+                                      <div class ="input-prepend">
+                                        <span class="add-on">@</span>
+                                        <input class="span8" name="twuser" type="text" id="inputUsername" style="box-shadow:none;" value="{{me.twuser}}" placeholder="">
                                       </div>
 
                                     </div>
@@ -128,7 +134,7 @@ $(function () {
                                 </div>
                               </div>
                             </div>
-
+                            </form>
                             <div class="tab-pane" id="account">
                               <div class="row-fluid">
                                 <div class="span12">

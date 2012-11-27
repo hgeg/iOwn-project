@@ -61,12 +61,21 @@ def profile(request, user=""):
       return render_to_response('404.html',{'p':user,'me':me})
 
 @login_required
+@csrf_exempt
 def settings(request):
     myUser = request.user
     me = Person.objects.get(user = myUser.pk)
     if request.method == 'GET':
       return render_to_response('settings.html',{'me':me,'p':me})
-    
+    name = request.POST['name']
+    bio = request.POST['bio']
+    gender = request.POST['gender']
+    fbuser = request.POST['fbuser']
+    twuser = request.POST['twuser']
+    photo = request.POST['photourl']
+    me.name, me.bio, me.gender = name, bio, gender
+    me.save()
+    return render_to_response('settings.html',{'me':me,'p':me})
 
 
 @login_required
