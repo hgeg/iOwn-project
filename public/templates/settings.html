@@ -1,64 +1,64 @@
 {%extends "mainframe.html"%}
 {%block title%}Equpi - {{p.user.username}}'{%if p.user.username|last != 's'%}s{%endif%} profile{%endblock%}
 {%block custom%}
-  <script>
-    $(function () {
-      $('#myTab a:last').tab('show');
-    })
-  </script>
+<script>
+$(function () {
+  $('#myTab a:last').tab('show');
+})
+</script>
 {%endblock%}
 {%block content%}
 <div class="container">
-    <div class="row-fluid">
-        <div class="span3">
-            <aside>
+  <div class="row-fluid">
+    <div class="span3">
+      <aside>
 
-                <nav>
-                    <ul class="nav">
-                      <li class="selected">
-                      <a href=""><i class="icon-play"></i>{%if p.gender == 'm'%}His{%else%}Her{%endif%} Belongings</a>
-                      </li>
-                      <li>
-                        <a href=""><i class="icon-user icon-white"></i> View Random Profile</a>
-                      </li>
-                    </ul>
-                </nav>
+        <nav>
+          <ul class="nav">
+            <li class="selected">
+              <a href=""><i class="icon-play"></i>{%if p.gender == 'm'%}His{%else%}Her{%endif%} Belongings</a>
+            </li>
+            <li>
+              <a href=""><i class="icon-user icon-white"></i> View Random Profile</a>
+            </li>
+          </ul>
+        </nav>
 
-                <nav>
-                    <ul class="nav">
-                      <li>
-                      <img class="avatar avatar-big" src="/files/images/avatar/{{p.photo}}" width="100%">
-                      </li>
-                      <li>
-                      <a href=""></i>{{p.name}}</a>
-                      </li>
-                      <li>
-                        <i style="color:white;font-size:0.8em;margin:5px 5px 5px 5px;">
-                        {{p.bio}}
-                        </i>
-                      </li>
-                      <li>
-                        <p>
-                        <a href=""><img src="/files/images/facebook.png" class="img-rounded"> {{p.user.username}}'s Facebook</a>
-                        <a href=""><img src="/files/images/twitter.png" class="img-rounded"> {{p.user.username}}'s Twitter</a>
-                        </p>
-                      </li>
-                    </ul>
-                </nav>
+        <nav>
+          <ul class="nav">
+            <li>
+              <img class="avatar avatar-big" src="/files/images/avatar/{{p.photo}}" width="100%">
+            </li>
+            <li>
+              <a href=""></i>{{p.name}}</a>
+            </li>
+            <li>
+              <i style="color:white;font-size:0.8em;margin:5px 5px 5px 5px;">
+                {{p.bio}}
+              </i>
+            </li>
+            <li>
+              <p>
+                <a href=""><img src="/files/images/facebook.png" class="img-rounded"> {{p.user.username}}'s Facebook</a>
+                <a href=""><img src="/files/images/twitter.png" class="img-rounded"> {{p.user.username}}'s Twitter</a>
+              </p>
+            </li>
+          </ul>
+        </nav>
 
 
-            </aside>
-        </div>
+      </aside>
+    </div>
 
-        <div class="span9" id="content-wrapper">
-            <div id="content">
+    <div class="span9" id="content-wrapper">
+      <div id="content">
 
                 <!-- Navbar
                 ================================================== -->
                 <section id="stats">
                   <header>
                     <div class="pull-right">
-                        <a class="btn btn-primary">Save Changes</a>
+                      <a class="btn btn-primary">Save Changes</a>
                     </div>
                     <h1>Settings</h1>
                   </header>
@@ -66,95 +66,104 @@
 
                   </div>
                 </section>
-              
+
                 <!-- Settings
                 ================================================== -->
-                 <section id="belongingsMenu">
+                <section id="belongingsMenu">
 
                   <div class="row-fluid">
                     <div class="span12">
                       <div class="hero-unit">
 
+                        <div class="control-group">
 
-                                <div class="control-group">
+                          <ul class="nav nav-tabs" id="myTab">
+                            <li class="active"><a href="#profile" data-toggle="tab" style="color:#333333;">Profile</a></li>
+                            <li><a href="#account " data-toggle="tab" style="color:#333333;">Password Change</a></li>
+                          </ul>
 
-                                <ul class="nav nav-tabs" id="myTab">
-                                  <li class="active"><a href="#profile" data-toggle="tab" style="color:#333333;">Profile</a></li>
-                                  <li><a href="#account " data-toggle="tab" style="color:#333333;">Password Change</a></li>
-                                </ul>
+                          <div class="tab-content">
 
-                                <div class="tab-content">
-
-                                  <div class="tab-pane active" id="profile">
+                            <div class="tab-pane active" id="profile">
+                              <div class="row-fluid">
+                                <div class="span12">
                                   <div class="row-fluid">
-                                    <div class="span12">
-                                      <div class="row-fluid">
-                                        <div class="span6">
-                                          <label class="control-label">Profile Picture:</label>
-                                          <div class="controls">
-                                            <img src="http://placehold.it/90x90" class="img-rounded"><button class="btn" type="button" style="margin-left:10px;">Change Picture</button>
-                                          </div>
-                                          <br/>
-                                          
-                                          <label class="control-label">Your bio:</label>
-                                          <div class="controls">
-                                          <textarea rows="3"></textarea>                                  
-                                          </div>
-                                        </div>
+                                    <div class="span6">
+                                      <label class="control-label">Profile Picture:</label>
+                                      <div class="controls">
+                                        <img src="http://placehold.it/90x90" class="img-rounded"><button class="btn" type="button" style="margin-left:10px;">Change Picture</button>
+                                      </div>
+                                      <br/>
 
-                                        <div class="span6">
-                                          <label class="control-label">Your name:</label>
-                                          <div class="controls">
-                                            <input name="name" type="text" value="{{name}}" id="inputName" placeholder="{{p.name}}">
-                                          </div>
-                                          <label class="control-label" for="inputPassword">Gender:</label>
-                                          <div class="controls">
-                                            <select name="gender">
-                                              <option value="m">Man</option>
-                                              <option value="f">Woman</option>
-                                            </select>
-                                          </div>
-                                          <label class="control-label" for="inputPassword">Your Facebook URL:</label>
-                                          <div class="controls">
-                                            <input name="name" type="text" value="{{name}}" id="inputName" placeholder="facebook.com/example">
-                                          </div>
-                                          <label class="control-label" for="inputPassword">Your Twitter username:</label>
-                                          <div class="controls">
-                                            <input name="name" type="text" value="{{name}}" id="inputName" placeholder="@example">
-                                          </div>
-                                          
-                                        </div>
-
+                                      <label class="control-label">Your bio:</label>
+                                      <div class="controls">
+                                        <textarea rows="3"></textarea>                                  
                                       </div>
                                     </div>
-                                  </div>
-                                  </div>
 
-                                  <div class="tab-pane" id="account">
-                                  <label class="control-label" for="inputPassword">Enter your password:</label>
-                                  <div class="controls">
-                                    <input name="pass" type="password" id="inputPassword" placeholder="Password">
-                                  </div>
-                                  <label class="control-label" for="inputPassword">Enter your new password:</label>
-                                  <div class="controls">
-                                    <input name="pass" type="password" id="inputPassword" placeholder="Password">
-                                  </div>
-                                  <label class="control-label" for="inputPassword">Retype your new password:</label>
-                                  <div class="controls">
-                                    <input name="repass" type="password" id="inputPassword" placeholder="Password Again">
-                                  </div>
+                                    <div class="span6">
+                                      <label class="control-label">Your name:</label>
+                                      <div class="controls">
+                                        <input name="name" type="text" value="{{name}}" id="inputName" placeholder="{{p.name}}">
+                                      </div>
+                                      <label class="control-label" for="inputPassword">Gender:</label>
+                                      <div class="controls">
+                                        <select name="gender">
+                                          <option value="m">Man</option>
+                                          <option value="f">Woman</option>
+                                        </select>
+                                      </div>
+                                      <label class="control-label" for="inputPassword">Your Facebook URL:</label>
+                                      <div class="controls">
+                                        <input name="name" type="text" value="{{name}}" id="inputName" placeholder="facebook.com/example">
+                                      </div>
+                                      <label class="control-label" for="inputPassword">Your Twitter username:</label>
+                                      <div class="controls">
+                                        <input name="name" type="text" value="{{name}}" id="inputName" placeholder="@example">
+                                      </div>
+
+                                    </div>
+
                                   </div>
                                 </div>
+                              </div>
+                            </div>
+
+                            <div class="tab-pane" id="account">
+                              <div class="row-fluid">
+                                <div class="span12">
+                                  <div class="row-fluid">
+                                    <div class="span6">
+                                      <label class="control-label" for="inputPassword">Enter your password:</label>
+                                      <div class="controls">
+                                        <input name="pass" type="password" id="inputPassword" placeholder="Password">
+                                      </div>
+                                      <label class="control-label" for="inputPassword">Enter your new password:</label>
+                                      <div class="controls">
+                                        <input name="pass" type="password" id="inputPassword" placeholder="Password">
+                                      </div>
+                                      <label class="control-label" for="inputPassword">Retype your new password:</label>
+                                      <div class="controls">
+                                        <input name="repass" type="password" id="inputPassword" placeholder="Password Again">
+                                      </div>
+                                    </div>
+                                    <div class="span6"></div>
+                                  </div>
                                 </div>
+                              </div>
+                              
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </section>
 
+              </div>
             </div>
-        </div>
-    </div>
-</div><!-- /container -->
+          </div>
+        </div><!-- /container -->
 
-<!-- Modal -->
-{%endblock%}
+        <!-- Modal -->
+        {%endblock%}
