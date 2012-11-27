@@ -57,6 +57,9 @@
                 ================================================== -->
                 <section id="stats">
                   <header>
+                    <div class="pull-right">
+                        <a class="btn btn-primary">Save Changes</a>
+                    </div>
                     <h1>Settings</h1>
                   </header>
                   <div class="row-fluid">
@@ -76,35 +79,54 @@
                                 <div class="control-group">
 
                                 <ul class="nav nav-tabs" id="myTab">
-                                  <li class="active"><a href="#profile" data-toggle="tab" style="color:#db4e2a;">Profile</a></li>
-                                  <li><a href="#account " data-toggle="tab" style="color:#db4e2a;">Password Change</a></li>
+                                  <li class="active"><a href="#profile" data-toggle="tab" style="color:#333333;">Profile</a></li>
+                                  <li><a href="#account " data-toggle="tab" style="color:#333333;">Password Change</a></li>
                                 </ul>
 
                                 <div class="tab-content">
 
                                   <div class="tab-pane active" id="profile">
-                                  <label class="control-label">Your name:</label>
-                                  <div class="controls">
-                                    <input name="name" type="text" value="{{name}}" id="inputName" placeholder="{{p.name}}">
-                                  </div>
-                                  <label class="control-label">Your bio:</label>
-                                  <div class="controls">
-                                  <textarea rows="3"></textarea>                                  
-                                  </div>
-                                  <label class="control-label" for="inputPassword">Your Facebook URL:</label>
-                                  <div class="controls">
-                                    <input name="name" type="text" value="{{name}}" id="inputName" placeholder="facebook.com/example">
-                                  </div>
-                                  <label class="control-label" for="inputPassword">Your Twitter username:</label>
-                                  <div class="controls">
-                                    <input name="name" type="text" value="{{name}}" id="inputName" placeholder="@example">
-                                  </div>
-                                  <label class="control-label" for="inputPassword">You are a:</label>
-                                  <div class="controls">
-                                    <select name="gender">
-                                      <option value="m">Man</option>
-                                      <option value="f">Woman</option>
-                                    </select>
+                                  <div class="row-fluid">
+                                    <div class="span12">
+                                      <div class="row-fluid">
+                                        <div class="span6">
+                                          <label class="control-label">Profile Picture:</label>
+                                          <div class="controls">
+                                            <img src="http://placehold.it/90x90" class="img-rounded"><button class="btn" type="button" style="margin-left:10px;">Change Picture</button>
+                                          </div>
+                                          <br/>
+                                          
+                                          <label class="control-label">Your bio:</label>
+                                          <div class="controls">
+                                          <textarea rows="3"></textarea>                                  
+                                          </div>
+                                        </div>
+
+                                        <div class="span6">
+                                          <label class="control-label">Your name:</label>
+                                          <div class="controls">
+                                            <input name="name" type="text" value="{{name}}" id="inputName" placeholder="{{p.name}}">
+                                          </div>
+                                          <label class="control-label" for="inputPassword">Gender:</label>
+                                          <div class="controls">
+                                            <select name="gender">
+                                              <option value="m">Man</option>
+                                              <option value="f">Woman</option>
+                                            </select>
+                                          </div>
+                                          <label class="control-label" for="inputPassword">Your Facebook URL:</label>
+                                          <div class="controls">
+                                            <input name="name" type="text" value="{{name}}" id="inputName" placeholder="facebook.com/example">
+                                          </div>
+                                          <label class="control-label" for="inputPassword">Your Twitter username:</label>
+                                          <div class="controls">
+                                            <input name="name" type="text" value="{{name}}" id="inputName" placeholder="@example">
+                                          </div>
+                                          
+                                        </div>
+
+                                      </div>
+                                    </div>
                                   </div>
                                   </div>
 
@@ -122,12 +144,7 @@
                                     <input name="repass" type="password" id="inputPassword" placeholder="Password Again">
                                   </div>
                                   </div>
-  
                                 </div>
-
-                                  <div class="controls">
-                                    <button type="submit" class="btn btn-success">Save Changes</button>
-                                  </div>
                                 </div>
                       </div>
                     </div>
