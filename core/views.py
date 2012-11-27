@@ -66,6 +66,8 @@ def settings(request):
     me = Person.objects.get(user = myUser.pk)
     if request.method == 'GET':
       return render_to_response('settings.html',{'me':me,'p':me})
+    
+
 
 @login_required
 @csrf_exempt

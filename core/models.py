@@ -35,6 +35,10 @@ class Person(models.Model):
   notifications = models.ManyToManyField('Info',related_name='ntf')
   messages      = models.ManyToManyField('Info',related_name='msg')
 
+  #social network links
+  #fbuser = models.CharField(max_length = 50)
+  #twuser = models.CharField(max_length = 16)
+
   #profile information
   last_change  = models.DateTimeField(auto_now=True)
   join_date    = models.DateTimeField(auto_now_add=True)
