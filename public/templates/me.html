@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {%extends "mainframe.html"%}
 {%block title%}Equpi - Your Profile{%endblock%}
 {%block custom%}
@@ -298,3 +299,296 @@ setInterval('lookup()',1000);
   </div>
 </div>
 {%endblock%}
+=======
+{%extends "mainframe.html"%}
+{%block title%}Equpi - Your Profile{%endblock%}
+{%block custom%}
+<script>
+oldQuery = ""
+function lookup(){
+  if($('#lookupQuery').attr('value').length>2 && $('#lookupQuery').attr('value')!=oldQuery) {
+    $('#loading').show();
+    $.ajax({url:'/lookup/'+$('#lookupQuery').attr('value')+'/',success: function(data){
+        m = $('#suggestions');
+        m.empty();
+        if(data.length==0)
+          m.html('<span class="muted">No items found...<span>');
+        for(i=0;i<data.length;i++) {
+          d = data[i] 
+          suggestion = '<br><li><a href="#" onclick="$(\'#product\').attr(\'value\',\''+escape(d.name)+'\');$(this).closest(\'form\').submit()" style="color:#000033;"><div class="row-fluid"><div class="span2"><img id="simage" src="'+d.photo+'" class="img-polaroid" height="100px" width="100px"/></div><div class="span10"><strong>Name:</strong> <span>'+d.name+'</span><br><strong>Description:</strong> <span>'+d.description+'</span></div></div></a></li>'
+          m.append(suggestion);
+        }
+        oldQuery = $('#lookupQuery').attr('value');
+        $('#loading').hide();
+      }
+    });
+  }else if($('#lookupQuery').attr('value') == ''){
+    m = $('#suggestions');
+    m.html('<span class="muted">No items<span>');
+  }
+}
+$(document).ready(function(){
+$('#loading').hide();
+setInterval('lookup()',1000);
+});
+</script>
+
+<script src="/files/js/equpi.belongings.js"></script>
+{%endblock%}
+
+{%block content%}
+  <div class="container">
+    <div class="row-fluid">
+        <div class="span3">
+            <aside>
+                <nav>
+                    <ul class="nav">
+                      <li class="selected">
+                      <a href=""><i class="icon-play"></i>Your Belongings</a>
+                      </li>
+                      <li>
+                        <a href=""><i class="icon-user icon-white"></i> View Random Profile</a>
+                      </li>
+                    </ul>
+                </nav>
+
+                <nav>
+                    <ul class="nav">
+                      <li>
+                      <img class="avatar avatar-big" src="/files/images/avatar/{{p.photo}}" width="100%">
+                      </li>
+                      <li>
+                      <a href=""></i>{{p.name}}</a>
+                      </li>
+                      <li>
+                        <i style="color:white;font-size:0.8em;margin:5px 5px 5px 5px;">
+                        {{p.bio}}
+                        </i>
+                      </li>
+                      <li>
+                        <p>
+                        <a href="facebook.com/{{p.fbuser}}"><img src="/files/images/facebook.png" class="img-rounded"> {{p.user.username}}'s Facebook</a>
+                        <a href="twitter.com/{{p.twuser}}"><img src="/files/images/twitter.png" class="img-rounded"> {{p.user.username}}'s Twitter</a>
+                        </p>
+                      </li>
+                    </ul>
+                </nav>
+            </aside>
+        </div>
+        <div class="span9" id="content-wrapper">
+            <div id="content">
+
+                <!-- Navbar
+                ================================================== -->
+                <section id="stats">
+                  <header>
+                    <div class="pull-right">
+                        <a class="btn btn-small">Tweet</a>
+                        <a class="btn btn-small">Share on Facebook</a>
+                    </div>
+                    <h1>Your  Belongings</h1>
+                  </header>
+                  <div class="row-fluid">
+                    <div class="span2">
+                      <div class="kpi">{{p.seen_count}}</div>
+                        <div><small>total profile view</small></div>
+                    </div>
+                    <div class="span2">
+                      <div class="kpi">{{p.item_count}}</div>
+                        <div><small>items shared</small></div>
+                    </div>
+                    <div class="span8">
+                      <div class="kpi">
+                        {%if p.last_change|timesince == "0 minutes"%}
+                          just now
+                        {%else%}
+                          {{p.last_change|timesince}} ago
+                        {%endif%}
+                      </div>
+                        <div><small>last seen</small></div>
+                    </div>
+                  </div>
+                </section>
+              
+                <!-- Olaylar
+                ================================================== -->
+                <section id="tech" style="display:none;">
+                  <div class="sub-header">
+                    <h2>&ensp;</h2>
+                  </div>
+                  <div class="row-fluid">
+                    <div class="span12">
+                      <table class="table">
+                        <thead>
+                            <td>
+                            
+                            </td>
+                            <td>
+                              <a class="btn btn-primary btn-large" id="displayText" href="javascript:toggle();"></a>
+                            </td>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="primary">
+                              <div class="row-fluid row-fluid-alternate-bg">
+                              <div class="media">
+                                <a class="pull-left" href="#">
+                                  <img class="media-object" src="/files/images/320x320">
+                                </a>
+                                <div class="media-body">
+                                  <h4 class="media-heading">iPhone 5</h4> 
+                                    Onur claimed that he has <strong>iPhone 5</strong> on <strong>Nov 8</strong>.</br>
+                                    And <strong>7</strong> people love it.
+                                    <br/><br/>
+                                    <a class="btn btn-small"><i class="icon-heart icon-black"></i> love</a>
+                                    <a class="btn btn-small"><i class="icon-shopping-cart icon-black"></i> buy iPhone5</a>
+                                </td> 
+                                </div>
+                              </div>
+                            </div>
+                            </td>
+                            <td></td>
+                          </tr>
+                            
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </section>
+
+                 <section id="belongingsMenu">
+                  <div class="sub-header">
+					<div class="row" style="text-align:center">
+                          <div style="span12">
+                                <a id="displayText">
+                                  <button  style="font-color:white;" class="btn btn-primary" href="#categoryModal" onclick="$('#addFrom').attr('action','/add/{{b.name}}/');" role="button" data-toggle="modal">+ Add New Category</button>
+                                </a>
+                          </div>
+                        </div>
+                    <h2>&ensp;</h2>
+                  </div>
+                  <div class="row-fluid equpi-belongings-container" style="padding:0;margin:0;">
+                    <div class="span12" style="padding:0;margin:0;">
+                      <div >
+					  <div class="equpi-belongingsCategory-wrapper">
+                      {%for b in p.belongingList%}
+						
+							<div class="equpi-belongingsCategory">
+							<p class="equpi-belongingsCategory-label">{{b.name}}</p>
+                            {% for i in b.boxes.all|slice:":5"%}      
+							<div class="equpi-belongingsElement">
+								<img src="{{i.item.meta.image}}" class="equpi-belongingsElement-image"/>
+								<p style="text-align: center;">{{i.item.meta.name|slice:":12"}}</p>
+								<div class="equpi-belongingsDetails-wrapper">
+									<p style="text-align: center;">{{i.item.meta.name}}</p>
+								</div>
+							</div>
+                            {%endfor%}
+							{%if b.boxes.all|length < 5 %}
+							<div class="equpi-belongingsElement">
+								<a id="displayText">
+                                  <img href="#myModal" onclick="$('#addFrom').attr('action','/add/{{b.name}}/');" role="button" data-toggle="modal" src="/files/images/icons/arti2.png" class="equpi-belongingsElement-image"><br>
+                                  <p style="text-align: center;">Add More</p>
+                                </a>
+							</div>
+                            {%endif%}
+                            </div>
+						
+                      {%endfor%}
+					  <div>
+                      <br>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+            </div>
+        </div>
+    </div>
+</div><!-- /container -->
+
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Add or Change Item</h3>
+  </div>
+  <div class="modal-body">
+    <label>Find existing product:</label>
+    <form class="form-inline" method="POST" action="/add/" id="addFrom">
+      <fieldset>
+        <input type="text" id="lookupQuery"  autocomplete="off" name="name" placeholder="Type the name...">&nbsp;&nbsp;<img id="loading" src="/files/images/loading.gif"></br>
+        <br>
+        <strong>Suggestions:</strong>
+        <ul class="nav nav-list" id="suggestions">
+        </ul>
+        <!--<img src="/files/images/100x100" name="image" class="img-rounded">
+        <button class="btn">Upload Image</button>-->
+        <br>
+        <input type="text" value="" name="product" id="product" style="display:none;">
+      </fieldset>
+    </form>
+    <h4>or</h4>
+    <label>Add custom brand:</label>
+    <form class="form-horizontal">
+      <fieldset>
+        <label>Name:</label>
+        <input type="text" id="lookupQuery" name="name" placeholder="Type the name...">
+        <label>Description:</label>
+        <input type="text" id="lookupQuery" name="name" placeholder="Type the name..."><br>
+        <div id="suggestion" class="row-fluid">
+          <div class="span12">
+            <label>Sample Photo:</label>
+            <img id="simage" src="/files/images/100x100" class="img-polaroid" height="100px" width="100px"/><br>
+            <input name="file" type="file" class="btn">
+          </div>
+        </div>
+        <!--<img src="/files/images/100x100" name="image" class="img-rounded">
+        <button class="btn">Upload Image</button>-->
+        <br>
+      <input type="submit" value="Add" class="btn btn-primary">
+      </fieldset>
+    </form>
+  </div>
+  <!--
+    <div class="modal-body">
+      <h3>Or choose from the history</h3>
+      <img src="/files/images/40x40" class="img-rounded">
+      <img src="/files/images/40x40" class="img-rounded">
+      <img src="/files/images/40x40" class="img-rounded">
+      <img src="/files/images/40x40" class="img-rounded">
+      <img src="/files/images/40x40" class="img-rounded">
+      <img src="/files/images/40x40" class="img-rounded">
+      <img src="/files/images/40x40" class="img-rounded">
+      <img src="/files/images/40x40" class="img-rounded">
+      
+  </div>
+  -->
+  <div class="modal-footer">
+  </div>
+</div>
+<div id="categoryModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="cateogryModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Add a Category</h3>
+  </div>
+  <div class="modal-body">
+    <label>Choose a new category to add:</label>
+    <form class="form-horizontal" method="POST" action="/category:add/">
+      {%csrf_token%}
+      <fieldset>
+        <select name="cat">
+          {%for c in categories%}
+            <option value="{{c}}">{{c}}</option>
+          {%endfor%}
+        </select>
+        <br>
+      </fieldset>
+  </div>
+  <div class="modal-footer">
+      <input type="submit" value="Add" class="btn btn-primary">
+    </form>
+  </div>
+</div>
+{%endblock%}
+>>>>>>> equpitrest profile update
