@@ -8,7 +8,13 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from django.views.decorators.csrf import csrf_protect,csrf_exempt
 from core.models import *
-import json,product
+from random import randint
+import json,product,uuid,mimetypes
+
+
+from settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
+from boto.s3.connection import S3Connection
+from boto.s3.key import Key
 
 
 @login_required
@@ -20,7 +26,27 @@ def update_seen(request):
   except: pass
   return HttpResponse()
 
-#helper methods
+def generate_file_name(username,new=False):
+  if not new:
+    filename = "%s_%s_p_%s"%(username,uuid.uuid4().hex[:4],uuid.uuid4().hex[:10])
+  else:
+    filename = "%s_%s_n_%s"%(username,uuid.uuid4().hex[:4],uuid.uuid4().hex[:8])
+  return filename
+
+def store_in_s3(user, filename, content, new=False):
+  conn = S3Connection(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)
+  b = conn.create_bucket("equpi")
+  mime = mimetypes.guess_type(filename)[0]
+  k = Key(b)
+  if user.photo != "placeholder.jpg" and not new:
+    k.key = user.photo
+  else:
+    k.key = generate_file_name(user.user.username, new)
+  k.set_metadata("Content-Type", mime)
+  k.set_contents_from_string(content)
+  k.set_acl("public-read")
+  return k.key
+
 def me(request):
   user = request.user
   p = Person.objects.get(user = user.pk)
@@ -72,8 +98,11 @@ def settings(request):
     gender = request.POST['gender']
     fbuser = request.POST['fbuser']
     twuser = request.POST['twuser']
-    photo = request.POST['photourl']
-    me.name, me.bio, me.gender = name, bio, gender
+    if('photo' in request.FILES):
+      photo = request.FILES['photo']
+      photo_url = store_in_s3(me, photo.name ,photo.read())
+      me.photo = photo_url
+    me.name, me.bio, me.gender, me.fbuser, me.twuser = name, bio, gender, fbuser, twuser
     me.save()
     return render_to_response('settings.html',{'me':me,'p':me})
 
