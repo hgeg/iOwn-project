@@ -173,7 +173,7 @@ setInterval('lookup()',1000);
 						
 							<div class="equpi-belongingsCategory">
 							<p class="equpi-belongingsCategory-label">{{b.name}}</p>
-                            {% for i in b.boxes.all|slice:":5"%}      
+                            {% for i in b.boxes.all%}      
 							<div class="equpi-belongingsElement">
 								<img src="{{i.item.meta.image}}" class="equpi-belongingsElement-image"/>
 								<p style="text-align: center;">{{i.item.meta.name|slice:":12"}}</p>
