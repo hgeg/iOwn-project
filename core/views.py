@@ -144,11 +144,12 @@ def add_item(request,cat):
 @csrf_exempt
 def add_category(request):
   if request.method == 'GET': return HttpResponseRedirect('/me/')
-  category = request.POST['cat']
-  b = Category.objects.create(name=category)
-  b.save()
   me = Person.objects.get(user=request.user.pk)
-  me.belongings.add(b)
+  category = request.POST['cat']
+  if category not in [e.name for e in me.belongings.all()] and len(me.belongings.all())<5:
+    b = Category.objects.create(name=category)
+    b.save()
+    me.belongings.add(b)
   return HttpResponseRedirect('/me')
 
 def lookup(request,q):
