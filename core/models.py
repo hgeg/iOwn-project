@@ -36,8 +36,8 @@ class Person(models.Model):
   messages      = models.ManyToManyField('Info',related_name='msg')
 
   #social network links
-  fbuser = models.CharField(max_length = 50)
-  twuser = models.CharField(max_length = 16)
+  fbuser = models.CharField(max_length = 50,null=True)
+  twuser = models.CharField(max_length = 16,null=True)
 
   #profile information
   last_change  = models.DateTimeField(auto_now=True)
