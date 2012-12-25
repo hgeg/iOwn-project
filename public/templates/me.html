@@ -182,14 +182,12 @@ setInterval('lookup()',1000);
 								</div>
 							</div>
                             {%endfor%}
-							{%if b.boxes.all|length < 5 %}
 							<div class="equpi-belongingsElement">
 								<a id="displayText">
                                   <img href="#myModal" onclick="$('#addFrom').attr('action','/add/{{b.name}}/');" role="button" data-toggle="modal" src="/files/images/icons/arti2.png" class="equpi-belongingsElement-image"><br>
                                   <p style="text-align: center;">Add More</p>
                                 </a>
 							</div>
-                            {%endif%}
                             </div>
 						
                       {%endfor%}
