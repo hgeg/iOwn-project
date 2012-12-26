@@ -159,19 +159,18 @@ setInterval('lookup()',1000);
   					          <div class="row" style="text-align:center">
                         <div style="span12">
                           <a id="displayText">
-                            <button  style="font-color:white;" class="btn btn-primary" href="#categoryModal" onclick="$('#addFrom').attr('action','/add/{{b.name}}/');" role="button" data-toggle="modal">+ Add New Category</button>
+                            <button  style="font-color:white; margin-top:10px; margin-bottom:10px; margin-right:10px;" class="btn btn-primary pull-right" href="#categoryModal" onclick="$('#addFrom').attr('action','/add/{{b.name}}/');" role="button" data-toggle="modal">+ Add New Category</button>
                           </a>
                         </div>
                       </div>
-                      <h2>&ensp;</h2>
                     </div>
-                    <div class="row-fluid equpi-belongings-container" style="padding:0;margin:0;">
+                    <div class="row-fluid equpi-belongings-container" style="padding:0;margin:0; background-color:#fafafa ;">
                       <div class="span12" style="padding:0;margin:0;">
                         <div >
   					              <div class="equpi-belongingsCategory-wrapper">
                             {%for b in p.belongingList%}
   						              <div class="equpi-belongingsCategory">
-  							              <p class="equpi-belongingsCategory-label">{{b.name}}</p>
+  							              <p class="lead" style="text-align: center; margin-bottom:10px; margin-top:10px;">{{b.name}}</p>
                               {% for i in b.boxes.all%}      
   						                <div class="equpi-belongingsElement">
   							                <img src="{{i.item.meta.image}}" class="equpi-belongingsElement-image"/>
@@ -285,4 +284,3 @@ setInterval('lookup()',1000);
   </div>
 </div>
 {%endblock%}
->>>>>>> equpitrest profile update
