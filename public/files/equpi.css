@@ -32,6 +32,7 @@
 	margin-bottom: 10px;
 	clear: both;
 	width: 100%;
+	position: relative;
 	
 }
 
@@ -40,17 +41,53 @@
 	height: auto;
 	clear: both;
 	margin: 5%;
+	position: relative;
+	top:0px;
+	z-index:0;
 }
 
-.equpi-belongingsDetails-wrapper {
-	width: 80%;
-	margin-left: 20%;
-	height: auto;
-}
 
 .equpi-belongings-container {
 	background-color: #E6E6E6;
 	margin: 0px;
 	height: 80%;
 	
+}
+
+.equpi-belonging-hover {
+	background-color: #ff0;
+}
+
+.equpi-belongingsElement-lovebox {
+	width: auto;
+  height: 10%;
+  margin:0;
+	padding:0;
+  position: absolute; 
+  z-index:10;
+  top:7%;
+	right:10%;
+	background-color: rgba(50,50,50,0.75);
+	border-radius: 3px;
+}
+
+.equpi-belongingsElement-love {
+	width: auto;
+	height: 75%;
+	margin-top: 3%;
+	margin-left: 5px;
+	margin-right: 5px;
+	padding:0;
+	float: left;
+}
+
+.equpi-belongingsElement-lovecount {
+	margin-left: 20%;
+	float: left;
+	margin:auto;
+	margin-left: 5px;
+	margin-right: 5px;
+	padding:0;
+	color: white;
+	vertical-align: middle;
 }

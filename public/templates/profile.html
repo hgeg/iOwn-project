@@ -1,5 +1,8 @@
 {%extends "mainframe.html"%}
 {%block title%}Equpi - {{p.user.username}}'{%if p.user.username|last != 's'%}s{%endif%} profile{%endblock%}
+{%block custom%}
+<script src="/files/js/equpi.belongings.js"></script>
+{%endblock%}
 {%block content%}
 <div class="container">
     <div class="row-fluid">
@@ -122,47 +125,38 @@
                   <div class="sub-header">
                     <h2>&ensp;</h2>
                   </div>
-                  <div class="row-fluid">
-                    <div class="span12">
-                      <div class="hero-unit">
-                        {%for b in p.belongings.all%}
-                        <table style="width:100%;">
-                          <caption><h3 class="pull-right">{{b.name}}</h3></caption>
-                        <thead>
-                          <tr class="pull-right">
-                            {%if b.boxes.all|length > 4 %}
-                            <th>
-                              <p>
+                  <div class="row-fluid equpi-belongings-container" style="padding:0;margin:0;">
+                      <div class="span12" style="padding:0;margin:0;">
+                        <div >
+                          <div class="equpi-belongingsCategory-wrapper">
+                            {%for b in p.belongingList%}
+                            <div class="equpi-belongingsCategory">
+                              <p class="equpi-belongingsCategory-label">{{b.name}}</p>
+                              {% for i in b.boxes.all|slice:":5"%}      
+                              <div class="equpi-belongingsElement">
+                                <img src="{{i.item.meta.image}}" class="equpi-belongingsElement-image"/>
+                                <div class="equpi-belongingsElement-lovebox">
+                                  <img src="/files/images/icons/heart.png" class="equpi-belongingsElement-love"/>
+                                  <p class="equpi-belongingsElement-lovecount">15000</p>
+                                </div>
+                                <p style="text-align: center;">{{i.item.meta.name|slice:":12"}}</p>
+                              </div>
+                              {%endfor%}
+                              {%if b.boxes.all|length < 5 %}
+                              <div class="equpi-belongingsElement">
                                 <a id="displayText">
-                                  <img href="#myModal" onclick="$('#addFrom').attr('action','/add/{{b.name}}/');" role="button" data-toggle="modal" src="/files/images/icons/more.png" class="img-polaroid"><br>
-                                  <span style="font-size:8px;">More...</span>
+                                   <img href="#myModal" onclick="$('#addFrom').attr('action','/add/{{b.name}}/');" role="button" data-toggle="modal" src="/files/images/icons/arti2.png" class="equpi-belongingsElement-image"><br>
+                                  <p style="text-align: center;">Add More</p>
                                 </a>
-                              </p>
-                            </th>
-                            {%endif%}
-                            {% for i in b.boxes.all|slice:":4"%}
-                            <th>
-                              <p>
-                                <a id="displayText" href="javascript:toggle();">
-                                  <img src="{{i.item.meta.image}}" class="img-polaroid" style="height:48px;"><br>
-                                  <span style="font-size:8px;">{{i.item.meta.name|slice:":12"}}...</span>
-                                </a>
-                              </p>
-                            </th>
-                            {%empty%}
-                            <th>
-                              <span class="small" style="font-size:14px;">
-                                No items in this category...
-                              </span>
-                            </th>
-                            {%endfor%}
-                          </tr>
-                        </thead>
-                      </table>
-                      {%endfor%}
+                              </div>
+                              {%endif%}
+                            </div>    
+                          {%endfor%}
+                          <div>
+                            <br>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
                 </section>
 
             </div>
