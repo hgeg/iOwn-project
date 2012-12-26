@@ -3,7 +3,7 @@
 	position: relative;
 	width: 100%;
 	overflow: viisble;
-	margin: 0;
+	margin: auto;
 	padding: 0;
 }
 
@@ -20,18 +20,22 @@
 	overflow:hidden;
 	float: left;
 	width: 18%;
-	margin-left: 2%;
+	margin-left: 1%;
+	margin-right: 1%;
 }
 
 .equpi-belongingsElement {
 	color: black;
 	border-radius: 3px;
-	background-color: #fbfbfc;
-	box-shadow: inset 0 1px 8px rgba(0, 0, 0, 0.25), 0 1px 0px rgba(255, 255, 255, 0.25);
+	background-color: #afeeee;
+	-webkit-box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.25);
+	box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.25);
 	overflow: hidden;
+	margin-right: 2%;
+	margin-left: 2%;
 	margin-bottom: 10px;
 	clear: both;
-	width: 100%;
+	width: 96%;
 	position: relative;
 	
 }
@@ -42,8 +46,6 @@
 	clear: both;
 	margin: 5%;
 	position: relative;
-	top:0px;
-	z-index:0;
 	-webkit-border-radius: 6px;
 	-moz-border-radius: 6px;
 	border-radius: 6px;
@@ -51,46 +53,52 @@
 
 
 .equpi-belongings-container {
-	background-color: #E6E6E6;
+	background-color: #fafafa;
 	margin: 0px;
 	height: 80%;
 	
 }
 
 .equpi-belonging-hover {
-	background-color: #cfd6db;
+	background-color: #48d1cc;
+}
+
+.equpi-belongingsElement-detailsbox {
+	width: 100%;
+	height: 30px;
+	margin:0;
+	padding:0;
+	right: 0;
+	overflow: hidden;
+	-webkit-box-shadow: inset 0px 3px 2px -2px rgba(0, 0, 0, 0.25), inset 0px -3px 2px -2px rgba(0, 0, 0, 0.25);
+	box-shadow: inset 0px 3px 2px -2px rgba(0, 0, 0, 0.25) , inset 0px -3px 2px -2px rgba(0, 0, 0, 0.25);
 }
 
 .equpi-belongingsElement-lovebox {
-	width: auto;
-	height: 10%;
-	margin:0;
-	padding:0;
-	position: absolute; 
-	z-index:10;
-	top:7%;
-	right:10%;
-	background-color: rgba(50,50,50,0.75);
-	border-radius: 3px;
+	clear: both;
+	margin:2px;
 }
 
 .equpi-belongingsElement-love {
-	width: auto;
-	height: 75%;
-	margin-top: 3%;
-	margin-left: 5px;
-	margin-right: 5px;
-	padding:0;
-	float: left;
+	width: 8px;
+	height: 8px;
+	margin: 1px;
+	padding:0px;
+	vertical-align: middle;
+	float: right;
 }
 
-.equpi-belongingsElement-lovecount {
-	margin-left: 20%;
+.equpi-belongingsElement-lovecount {	
 	float: left;
-	margin:auto;
-	margin-left: 5px;
-	margin-right: 5px;
+	margin: 0;
 	padding:0;
-	color: white;
-	vertical-align: middle;
+	color: black;
+	text-align: right;
+	font-size: 8px;
+	line-height: 10px;
+}
+
+.equpi-belongingsElement-label {
+	color : black;
+	text-align: center;
 }
