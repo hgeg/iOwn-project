@@ -23,10 +23,12 @@ urlpatterns = patterns('',
     (r'^logout/$', 'core.views.logout'),
     (r'^lookup/(?P<q>.*)/$', 'core.views.lookup'),
     (r'^add/(?P<cat>.*)/$', 'core.views.add_item'),
+    (r'^friends/$', 'core.views.friends'),
 
     (r'^category:add/$', 'core.views.add_category'),
 
     (r'^me/$', 'core.views.profile'),
     (r'^(?P<user>.*)/$', 'core.views.profile'),
     (r'^files/(?P<path>.*)$', 'django.views.static.serve', {'document_root':settings.MEDIA_ROOT}),
+    
 )

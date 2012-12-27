@@ -19,7 +19,7 @@
 	background-color: #fafafa;
 	overflow:hidden;
 	float: left;
-	width: 18%;
+	width: 15%;
 	margin-left: 1%;
 	margin-right: 1%;
 }
@@ -45,7 +45,6 @@
 	height: auto;
 	clear: both;
 	margin: 5%;
-	position: relative;
 	-webkit-border-radius: 6px;
 	-moz-border-radius: 6px;
 	border-radius: 6px;
@@ -70,8 +69,7 @@
 	padding:0;
 	right: 0;
 	overflow: hidden;
-	-webkit-box-shadow: inset 0px 3px 2px -2px rgba(0, 0, 0, 0.25), inset 0px -3px 2px -2px rgba(0, 0, 0, 0.25);
-	box-shadow: inset 0px 3px 2px -2px rgba(0, 0, 0, 0.25) , inset 0px -3px 2px -2px rgba(0, 0, 0, 0.25);
+	display: none;
 }
 
 .equpi-belongingsElement-lovebox {
@@ -101,4 +99,115 @@
 .equpi-belongingsElement-label {
 	color : black;
 	text-align: center;
+}
+
+.equpi-belongingsElement-mainCol {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	float: left;
+}
+
+.equpi-belongingsElement-controlCol {
+	width: 20%;
+	height: 100%;
+	margin: 2%;
+	margin-left: 0;
+	padding: 0;
+	float: left;
+	display: none;
+}
+
+.equpi-belongingsElement-controlButton {
+	width: 96%;
+	height: auto;
+	margin: 4%;
+	padding: 0;
+	border: 1px solid rgba(0,0,0,0.25);
+}
+
+.equpi-friends-wrapper {
+	width: 100%;
+	height: auto;
+	margin: 0;
+	overflow: auto;
+}
+
+.equpi-friends-element {
+	position: relative;
+	width: 80%;
+	height: auto;
+	margin: auto;
+	margin-top: 1%;
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-bottom: 1%;
+	border: 1px solid black;
+	overflow: hidden;	
+}
+
+.equpi-friends-avatarwrapper {
+	width: 20%;
+	margin: 0;
+	margin-right: 3%;
+	height: auto;
+	overflow: hidden;
+	float: left;
+}
+
+.equpi-friends-friendavatar {
+	height: auto;
+	width: 100%;
+	margin: 2%;
+	display: block;
+	
+}
+
+.equpi-friends-details {
+	height: auto;
+	width: 74%;
+	margin: 0;
+	overflow: hidden;
+}
+
+.equpi-friends-namelabel {
+	width: 75%;
+	margin: 0;
+	display: block;
+	overflow: hidden;
+	float:left;
+}
+
+.equpi-friends-socialwrapper{
+	width: 25%;
+	margin: 1%;
+	overflow: hidden;
+}
+
+.equpi-friends-lovebox {
+	width: 20%;
+	height: auto;
+	overflow: hidden;
+	clear: both;
+}
+
+.equpi-friends-loveicon {
+	width: 20%;
+	height: auto;
+	margin: 2%;
+	float: left;
+}
+
+.equpi-friends-preview {
+	width: 75%;
+	margin-top: 5%;
+	overflow: hidden;
+}
+
+.equpi-friends-previewimage {
+	width: 10%;
+	height: auto;
+	float: left;
+	margin: 1%;
+	display: none;
 }

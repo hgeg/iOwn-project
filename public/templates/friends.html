@@ -1,0 +1,356 @@
+{%extends "mainframe.html"%}
+{%block title%}Equpi - Your Profile{%endblock%}
+{%block custom%}
+<script src="/files/js/equpi.friends.js"></script>
+{%endblock%}
+
+{%block content%}
+  <div class="container">
+    <div class="row-fluid">
+        <div class="span3">
+            <aside>
+                <nav>
+                    <ul class="nav">
+                      <li>
+                      <a href="/me/"><i class="icon-hdd icon-white"></i>Your Belongings</a>
+                      </li>
+                      <li class="selected">
+                        <a href=""><i class=icon-play></i>Your Friends</a>
+                      </li>
+                      <li>
+                        <a href=""><i class="icon-user icon-white"></i> View Random Profile</a>
+                      </li>
+                    </ul>
+                </nav>
+
+                <nav>
+                    <ul class="nav">
+                      <li>
+                      <img class="avatar avatar-big" src="https://s3.amazonaws.com/equpi/{{p.photo}}" width="100%">
+                      </li>
+                      <li>
+                      <a href=""></i>{{p.name}}</a>
+                      </li>
+                      <li>
+                        <i style="color:white;font-size:0.8em;margin:5px 5px 5px 5px;">
+                        {{p.bio}}
+                        </i>
+                      </li>
+                      <li>
+                        <p>
+                        <a href="facebook.com/{{p.fbuser}}"><img src="/files/images/facebook.png" class="img-rounded"> {{p.user.username}}'s Facebook</a>
+                        <a href="twitter.com/{{p.twuser}}"><img src="/files/images/twitter.png" class="img-rounded"> {{p.user.username}}'s Twitter</a>
+                        </p>
+                      </li>
+                    </ul>
+                </nav>
+            </aside>
+        </div>
+        <div class="span9" id="content-wrapper">
+            <div id="content">
+
+                <!-- Navbar
+                ================================================== -->
+                <section id="stats">
+                  <header>
+                    <h1>Your  Friends</h1>
+                  </header>
+                  <div class="row-fluid">
+                    <div class="span2">
+                      <div class="kpi">120</div>
+                        <div><small>friends</small></div>
+                    </div>
+                    <div class="span2">
+                      <div class="kpi">1</div>
+                        <div><small>invitations</small></div>
+                    </div>
+                  </div>
+                </section>
+              
+                <!-- Olaylar
+                ================================================== -->
+                <section id="tech" style="display:none;">
+                  <div class="sub-header">
+                    <h2>&ensp;</h2>
+                  </div>
+                  <div class="row-fluid">
+                    <div class="span12">
+                      <table class="table">
+                        <thead>
+                            <td>
+                            
+                            </td>
+                            <td>
+                              <a class="btn btn-primary btn-large" id="displayText" href="javascript:toggle();"></a>
+                            </td>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="primary">
+                              <div class="row-fluid row-fluid-alternate-bg">
+                              <div class="media">
+                                <a class="pull-left" href="#">
+                                  <img class="media-object" src="/files/images/320x320">
+                                </a>
+                                <div class="media-body">
+                                  <h4 class="media-heading">iPhone 5</h4> 
+                                    Onur claimed that he has <strong>iPhone 5</strong> on <strong>Nov 8</strong>.</br>
+                                    And <strong>7</strong> people love it.
+                                    <br/><br/>
+                                    <a class="btn btn-small"><i class="icon-heart icon-black"></i> love</a>
+                                    <a class="btn btn-small"><i class="icon-shopping-cart icon-black"></i> buy iPhone5</a>
+                                </td> 
+                                </div>
+                              </div>
+                            </div>
+                            </td>
+                            <td></td>
+                          </tr>
+                            
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </section>
+                <section id="friendsMenu">
+                  <div class="sub-header">
+  					         <div class="row" style="text-align:center">
+                      <div style="width: 100%;height: 30px;">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="equpi-friends-wrapper">
+                    <div class="equpi-friends-element">
+                      <div class="equpi-friends-avatarwrapper">
+                        <img src="http://placehold.it/200x200" class="equpi-friends-friendavatar"/>
+                      </div>
+                      <div class="equpi-friends-details">
+                        <h3 class="equpi-friends-namelabel">Osman Oguz Bayraktar</h3>
+                        <div class="equpi-friends-socialwrapper">
+                          <a href="facebook.com"><img src="/files/images/facebook.png" class=" pull-right" style="margin: 1%;"></a>
+                          <a href="twitter.com"><img src="/files/images/twitter.png" class="pull-right" style="margin: 1%;"></a>
+                        </div>
+                        <div class="equpi-friends-lovebox">
+                          <img src="/files/images/icons/heart.png" class="equpi-friends-loveicon"/><p class="kpi">15</p>
+                        </div>
+                        <div class= "equpi-friends-preview">
+                          <img src="http://placehold.it/200x200" class= "equpi-friends-previewimage">
+                          <img src="http://placehold.it/200x200" class= "equpi-friends-previewimage">
+                          <img src="http://placehold.it/200x200" class= "equpi-friends-previewimage">
+                          <img src="http://placehold.it/200x200" class= "equpi-friends-previewimage">
+                          <img src="http://placehold.it/200x200" class= "equpi-friends-previewimage">
+                          <img src="http://placehold.it/200x200" class= "equpi-friends-previewimage">
+                          <img src="http://placehold.it/200x200" class= "equpi-friends-previewimage">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="equpi-friends-element">
+                      <div class="equpi-friends-avatarwrapper">
+                        <img src="http://placehold.it/200x200" class="equpi-friends-friendavatar"/>
+                      </div>
+                      <div class="equpi-friends-details">
+                        <h3 class="equpi-friends-namelabel">Osman Oguz Bayraktar</h3>
+                        <div class="equpi-friends-socialwrapper">
+                          <a href="facebook.com"><img src="/files/images/facebook.png" class=" pull-right" style="margin: 1%;"></a>
+                          <a href="twitter.com"><img src="/files/images/twitter.png" class="pull-right" style="margin: 1%;"></a>
+                        </div>
+                        <div class="equpi-friends-lovebox">
+                          <img src="/files/images/icons/heart.png" class="equpi-friends-loveicon"/><p class="kpi">15</p>
+                        </div>
+                        <div class= "equpi-friends-preview">
+                          <img src="http://placehold.it/200x200" class= "equpi-friends-previewimage">
+                          <img src="http://placehold.it/200x200" class= "equpi-friends-previewimage">
+                          <img src="http://placehold.it/200x200" class= "equpi-friends-previewimage">
+                          <img src="http://placehold.it/200x200" class= "equpi-friends-previewimage">
+                          <img src="http://placehold.it/200x200" class= "equpi-friends-previewimage">
+                          <img src="http://placehold.it/200x200" class= "equpi-friends-previewimage">
+                          <img src="http://placehold.it/200x200" class= "equpi-friends-previewimage">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="equpi-friends-element">
+                      <div class="equpi-friends-avatarwrapper">
+                        <img src="http://placehold.it/200x200" class="equpi-friends-friendavatar"/>
+                      </div>
+                      <div class="equpi-friends-details">
+                        <h3 class="equpi-friends-namelabel">Osman Oguz Bayraktar</h3>
+                        <div class="equpi-friends-socialwrapper">
+                          <a href="facebook.com"><img src="/files/images/facebook.png" class=" pull-right" style="margin: 1%;"></a>
+                          <a href="twitter.com"><img src="/files/images/twitter.png" class="pull-right" style="margin: 1%;"></a>
+                        </div>
+                        <div class="equpi-friends-lovebox">
+                          <img src="/files/images/icons/heart.png" class="equpi-friends-loveicon"/><p class="kpi">15</p>
+                        </div>
+                        <div class= "equpi-friends-preview">
+                          <img src="http://placehold.it/200x200" class= "equpi-friends-previewimage">
+                          <img src="http://placehold.it/200x200" class= "equpi-friends-previewimage">
+                          <img src="http://placehold.it/200x200" class= "equpi-friends-previewimage">
+                          <img src="http://placehold.it/200x200" class= "equpi-friends-previewimage">
+                          <img src="http://placehold.it/200x200" class= "equpi-friends-previewimage">
+                          <img src="http://placehold.it/200x200" class= "equpi-friends-previewimage">
+                          <img src="http://placehold.it/200x200" class= "equpi-friends-previewimage">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="equpi-friends-element">
+                      <div class="equpi-friends-avatarwrapper">
+                        <img src="http://placehold.it/200x200" class="equpi-friends-friendavatar"/>
+                      </div>
+                      <div class="equpi-friends-details">
+                        <h3 class="equpi-friends-namelabel">Osman Oguz Bayraktar</h3>
+                        <div class="equpi-friends-socialwrapper">
+                          <a href="facebook.com"><img src="/files/images/facebook.png" class=" pull-right" style="margin: 1%;"></a>
+                          <a href="twitter.com"><img src="/files/images/twitter.png" class="pull-right" style="margin: 1%;"></a>
+                        </div>
+                        <div class="equpi-friends-lovebox">
+                          <img src="/files/images/icons/heart.png" class="equpi-friends-loveicon"/><p class="kpi">15</p>
+                        </div>
+                        <div class= "equpi-friends-preview">
+                          <img src="http://placehold.it/200x200" class= "equpi-friends-previewimage">
+                          <img src="http://placehold.it/200x200" class= "equpi-friends-previewimage">
+                          <img src="http://placehold.it/200x200" class= "equpi-friends-previewimage">
+                          <img src="http://placehold.it/200x200" class= "equpi-friends-previewimage">
+                          <img src="http://placehold.it/200x200" class= "equpi-friends-previewimage">
+                          <img src="http://placehold.it/200x200" class= "equpi-friends-previewimage">
+                          <img src="http://placehold.it/200x200" class= "equpi-friends-previewimage">
+                        </div>
+                      </div>
+                    </div>                   
+                    <div class="equpi-friends-element">
+                      <div class="equpi-friends-avatarwrapper">
+                        <img src="http://placehold.it/200x200" class="equpi-friends-friendavatar"/>
+                      </div>
+                      <div class="equpi-friends-details">
+                        <h3 class="equpi-friends-namelabel">Osman Oguz Bayraktar</h3>
+                        <div class="equpi-friends-socialwrapper">
+                          <a href="facebook.com"><img src="/files/images/facebook.png" class=" pull-right" style="margin: 1%;"></a>
+                          <a href="twitter.com"><img src="/files/images/twitter.png" class="pull-right" style="margin: 1%;"></a>
+                        </div>
+                        <div class="equpi-friends-lovebox">
+                          <img src="/files/images/icons/heart.png" class="equpi-friends-loveicon"/><p class="kpi">15</p>
+                        </div>
+                        <div class= "equpi-friends-preview">
+                          <img src="http://placehold.it/200x200" class= "equpi-friends-previewimage">
+                          <img src="http://placehold.it/200x200" class= "equpi-friends-previewimage">
+                          <img src="http://placehold.it/200x200" class= "equpi-friends-previewimage">
+                          <img src="http://placehold.it/200x200" class= "equpi-friends-previewimage">
+                          <img src="http://placehold.it/200x200" class= "equpi-friends-previewimage">
+                          <img src="http://placehold.it/200x200" class= "equpi-friends-previewimage">
+                          <img src="http://placehold.it/200x200" class= "equpi-friends-previewimage">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="equpi-friends-element">
+                      <div class="equpi-friends-avatarwrapper">
+                        <img src="http://placehold.it/200x200" class="equpi-friends-friendavatar"/>
+                      </div>
+                      <div class="equpi-friends-details">
+                        <h3 class="equpi-friends-namelabel">Osman Oguz Bayraktar</h3>
+                        <div class="equpi-friends-socialwrapper">
+                          <a href="facebook.com"><img src="/files/images/facebook.png" class=" pull-right" style="margin: 1%;"></a>
+                          <a href="twitter.com"><img src="/files/images/twitter.png" class="pull-right" style="margin: 1%;"></a>
+                        </div>
+                        <div class="equpi-friends-lovebox">
+                          <img src="/files/images/icons/heart.png" class="equpi-friends-loveicon"/><p class="kpi">15</p>
+                        </div>
+                        <div class= "equpi-friends-preview">
+                          <img src="http://placehold.it/200x200" class= "equpi-friends-previewimage">
+                          <img src="http://placehold.it/200x200" class= "equpi-friends-previewimage">
+                          <img src="http://placehold.it/200x200" class= "equpi-friends-previewimage">
+                          <img src="http://placehold.it/200x200" class= "equpi-friends-previewimage">
+                          <img src="http://placehold.it/200x200" class= "equpi-friends-previewimage">
+                          <img src="http://placehold.it/200x200" class= "equpi-friends-previewimage">
+                          <img src="http://placehold.it/200x200" class= "equpi-friends-previewimage">
+                        </div>
+                      </div>
+                    </div>
+                </section>
+              </div>
+            </div>
+          </div>
+        </div><!-- /container -->
+
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Add or Change Item</h3>
+  </div>
+  <div class="modal-body">
+    <label>Find existing product:</label>
+    <form class="form-inline" method="POST" action="/add/" id="addFrom">
+      <fieldset>
+        <input type="text" id="lookupQuery"  autocomplete="off" name="name" placeholder="Type the name...">&nbsp;&nbsp;<img id="loading" src="/files/images/loading.gif"></br>
+        <br>
+        <strong>Suggestions:</strong>
+        <ul class="nav nav-list" id="suggestions">
+        </ul>
+        <!--<img src="/files/images/100x100" name="image" class="img-rounded">
+        <button class="btn">Upload Image</button>-->
+        <br>
+        <input type="text" value="" name="product" id="product" style="display:none;">
+      </fieldset>
+    </form>
+    <h4>or</h4>
+    <label>Add custom brand:</label>
+    <form class="form-horizontal">
+      <fieldset>
+        <label>Name:</label>
+        <input type="text" id="lookupQuery" name="name" placeholder="Type the name...">
+        <label>Description:</label>
+        <input type="text" id="lookupQuery" name="name" placeholder="Type the name..."><br>
+        <div id="suggestion" class="row-fluid">
+          <div class="span12">
+            <label>Sample Photo:</label>
+            <img id="simage" src="/files/images/100x100" class="img-polaroid" height="100px" width="100px"/><br>
+            <input name="file" type="file" class="btn">
+          </div>
+        </div>
+        <!--<img src="/files/images/100x100" name="image" class="img-rounded">
+        <button class="btn">Upload Image</button>-->
+        <br>
+      <input type="submit" value="Add" class="btn btn-primary">
+      </fieldset>
+    </form>
+  </div>
+  <!--
+    <div class="modal-body">
+      <h3>Or choose from the history</h3>
+      <img src="/files/images/40x40" class="img-rounded">
+      <img src="/files/images/40x40" class="img-rounded">
+      <img src="/files/images/40x40" class="img-rounded">
+      <img src="/files/images/40x40" class="img-rounded">
+      <img src="/files/images/40x40" class="img-rounded">
+      <img src="/files/images/40x40" class="img-rounded">
+      <img src="/files/images/40x40" class="img-rounded">
+      <img src="/files/images/40x40" class="img-rounded">
+      
+  </div>
+  -->
+  <div class="modal-footer">
+  </div>
+</div>
+<div id="categoryModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="cateogryModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Add a Category</h3>
+  </div>
+  <div class="modal-body">
+    <label>Choose a new category to add:</label>
+    <form class="form-horizontal" method="POST" action="/category:add/">
+      {%csrf_token%}
+      <fieldset>
+        <select name="cat">
+          {%for c in categories%}
+            <option value="{{c}}">{{c}}</option>
+          {%endfor%}
+        </select>
+        <br>
+      </fieldset>
+  </div>
+  <div class="modal-footer">
+      <input type="submit" value="Add" class="btn btn-primary">
+    </form>
+  </div>
+</div>
+{%endblock%}

@@ -239,7 +239,8 @@ def updateMessages(request):
   messages = p.messages.filter(state=0).order_by("date")
   return HttpResponse(serializers.serialize('json',messages),content_type="application/json")
   
-
+def friends(request):
+  return render_to_response('friends.html')
   
 
 
