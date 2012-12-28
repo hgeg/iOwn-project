@@ -51,7 +51,7 @@ class Person(models.Model):
   
 
   def ntfCount(self): return len(self.notifications.filter(state=0))
-  def msgCount(self): return len(self.notifications.filter(state=0))
+  def msgCount(self): return len(self.messages.filter(state=0))
   def belongingList(self):
     value = self.belongings
     try:

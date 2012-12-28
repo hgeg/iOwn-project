@@ -2,6 +2,14 @@
 {%block title%}Equpi - {{p.user.username}}'{%if p.user.username|last != 's'%}s{%endif%} profile{%endblock%}
 {%block custom%}
 <script src="/files/js/equpi.belongings.js"></script>
+<script>
+  function upvote(u,c,n) {
+    $.ajax('/vote/'+n+'/'+c+'/'+u+'/upvote/');
+  }
+  function downvote(u,c,n) {
+    $.ajax('/vote/'+n+'/'+c+'/'+u+'/downvote/');
+  }
+</script>
 {%endblock%}
 {%block content%}
 <div class="container">
@@ -151,7 +159,7 @@
                                   <div class="equpi-belongingsElement-detailsbox">
                                     <div class="pull-right equpi-belongingsElement-lovebox">
                                       <img src="/files/images/icons/heart.png" class="equpi-belongingsElement-love"/>
-                                      <p class="equpi-belongingsElement-lovecount">150,000</p>
+                                      <p class="equpi-belongingsElement-lovecount">{{i.item.vote}}</p>
                                     </div>
                                     <div class="pull-right equpi-belongingsElement-lovebox">
                                       <img src="/files/images/icons/friends.png" class="equpi-belongingsElement-love"/>
@@ -161,19 +169,13 @@
                                   <p class="equpi-belongingsElement-label">{{i.item.meta.name}}</p>
                                 </div>
                                 <div class="equpi-belongingsElement-controlCol">
-                                  <button id="upvoteElement" class="btn"><i class="icon-chevron-up"></i></button>
-                                  <button id="doiwnvoteElement" class="btn"><i class="icon-chevron-down"></i></button>
+                                  <button id="upvoteElement" class="btn" onclick="upvote('{{p.user.username}}','{{b.name}}','{{i.item.meta.name}}');"><i class="icon-chevron-up"></i></button>
+                                  <button id="doiwnvoteElement" class="btn" onclick="downvote('{{p.user.username}}','{{b.name}}','{{i.item.meta.name}}');"><i class="icon-chevron-down"></i></button>
                                   <button id="commentElement" class="btn"><i class="icon-comment"></i></button>
                                   <button id="buyElement" class="btn"><i class="icon-shopping-cart"></i></button>
                                 </div>
                               </div>
                               {%endfor%}
-                              <div class="equpi-belongingsElement">
-                                <a id="displayText">
-                                   <img href="#myModal" onclick="$('#addFrom').attr('action','/add/{{b.name}}/');" role="button" data-toggle="modal" src="/files/images/icons/arti2.png" class="equpi-belongingsElement-image"><br>
-                                  <p style="text-align: center;">Add More</p>
-                                </a>
-                              </div>
                             </div>    
                           {%endfor%}
                           <div>

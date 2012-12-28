@@ -113,7 +113,7 @@ def add_item(request,cat):
   if request.method == 'GET': return HttpResponseRedirect('/me/')
   name = request.POST['product']
   data = product.query(name.replace(' ','+'))[0]
-  title = data['title'].split(' - ')[0] 
+  title = data['title'].split(' - ')[0]
   try:
     b = Brand.objects.get(name=title)
   except:
@@ -126,13 +126,17 @@ def add_item(request,cat):
   
   description = data['description'] if len(data['description'])<141 else "%s..."%data['description'][:137]
 
+  me = Person.objects.get(user=request.user.pk)
+  for b in me.belongings.get(name=cat):
+    if name == b.item.name: return HttpResponseRedirect('/me')
+
+
   i = Item.objects.create(meta=b,note=description,photo="/files/image/no_image.jpg");
   i.save()
   
   bo = Box.objects.create(item=i)
   bo.save()
 
-  me = Person.objects.get(user=request.user.pk)
   bl = me.belongings.get(name=cat)
   bl.boxes.add(bo)
   bl.save()
@@ -212,7 +216,7 @@ def signup(request):
         user = User.objects.create(username=usr,email=eml)
         user.set_password(pas)
         user.save()
-        Person.objects.create(name=name,gender=sex,user=user)
+        Person.objects.create(name=name,gender=sex,user=user,fbuser='',twuser='')
         getGlobal().openings -=1
         getGlobal().save()
         return render_to_response('success.html')
@@ -222,6 +226,38 @@ def signup(request):
       return render_to_response('signup.html',{'message':'This username exists.','email':eml,'name':name,'user':usr})
   else:
     return render_to_response('signup.html',{'message':'Passwords do not match.','email':eml,'name':name,'user':usr})
+
+@login_required
+def vote(request,n,c,u,m):
+  p = Person.objects.get(user=User.objects.get(username=u))
+  myself = me(request)
+  catg =  p.belongings.get(name=c)
+  item = ""
+  for b in catg.boxes.all():
+    if n == b.item.meta.name:
+      item = b.item
+      break
+  if item == "": return HttpResponse('An error occured')
+  vcontent = "%s %sd this item."%(myself.user.username,m)
+  if vcontent in [e.content for e in item.comments.all()]: return HttpResponse('You cannot vote more than one time!') #already voted
+
+  ovcontent = "%s upvoted this item."%myself.user.username if m == 'downvote' else "%s downvoted this item."%myself.user.username 
+  for e in item.comments.all():
+    if e.content == ovcontent:
+      item.vote -= e.state
+      item.comments.remove(e)
+      break
+  state = 1 if m == "upvote" else -1
+  vote = Info.objects.create(poster = myself, content=vcontent,state=state)
+  vote.save()
+  item.comments.add(vote)
+  ntf = Info.objects.create(poster = myself, content="%s %sd %s."%(myself.user.username,m,n),state=0)
+  ntf.save()
+  p.notifications.add(ntf)
+  item.vote += vote.state
+  item.save();
+  return HttpResponse('You successfully voted!')
+
 
 #push notification methods
 @login_required
