@@ -146,7 +146,7 @@ def add_category(request):
   if request.method == 'GET': return HttpResponseRedirect('/me/')
   me = Person.objects.get(user=request.user.pk)
   category = request.POST['cat']
-  if category not in [e.name for e in me.belongings.all()] and len(me.belongings.all())<5:
+  if category not in [e.name for e in me.belongings.all()] and len(me.belongings.all())<6:
     b = Category.objects.create(name=category)
     b.save()
     me.belongings.add(b)
