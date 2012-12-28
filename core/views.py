@@ -275,6 +275,12 @@ def updateProfileNotifications(request):
   p = me(request)
   return HttpResponse('{"n":%d,"m":%d}'%(p.ntfCount,p.msgCount),content_type="application/json")
 
+@login_required
+def resetNotifications(request):
+  p = me(request)
+  [n.set_state() for n in p.notifications.all()]
+  return HttpResponse('{"msg":"OK"}',content_type="application/json")
+
 def updateComments(request,i):
   item = Item.objects.get(id=i)
   comments = item.comments.filter(state=0).order_by("date")

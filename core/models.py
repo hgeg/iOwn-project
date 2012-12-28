@@ -48,10 +48,12 @@ class Person(models.Model):
   sold_count   = models.IntegerField(default=0)
   item_count   = models.IntegerField(default=0)
   plan         = models.IntegerField(default=0)
-  
 
   def ntfCount(self): return len(self.notifications.filter(state=0))
   def msgCount(self): return len(self.messages.filter(state=0))
+  def ntfData(self):
+    data = '<hr/>'.join(['<p><a href=\'/%s\'>%s</a> <span id=%s>%s</span> <a href=\'/item/%s\'>%s</a></p>'%tuple([val for val in n.content.replace('"','').split(' ',2) for _ in (0, 1)]) for n in self.notifications.order_by("-date")[0:50]])
+    return data
   def belongingList(self):
     value = self.belongings
     try:
@@ -91,3 +93,8 @@ class Info(models.Model):
   content   = models.TextField(null=False)
   date      = models.DateTimeField(auto_now_add=True)
   state     = models.IntegerField(default=0)
+
+  def set_state(self): 
+    self.state=1
+    self.save()
+    return self.state

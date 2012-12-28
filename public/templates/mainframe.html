@@ -26,6 +26,14 @@
         {%block custom%}
         {%endblock%}
 
+        <style>
+          .popover-custom {
+            height: 500px;
+            font-size:10px;
+            overflow:scroll;
+          }
+        </style>
+
         <script type="text/javascript">
 
           var _gaq = _gaq || [];
@@ -42,8 +50,14 @@
         </script>
 
         <script>  
+
+          function resetNotifications() {
+            $.ajax('/notification:reset/');
+            $('#ntfbadge').fadeOut(500);
+          }
+
           $(function ()  
-          { $("#notif").popover({placement:'bottom'});  
+          { $("#notif").popover({placement:'bottom',html: true,  template: '<div class="popover"><div class="arrow"></div><div class="popover-inner"><div class="popover-content popover-custom"><p></p></div></div></div>'});  
           });  
         </script>  
 
@@ -80,20 +94,10 @@
           <ul class="nav pull-right">
             <li class="divider-vertical"></li>
             <li>
-            <a href="#" id="notif" rel="popover" data-content="buraya notification yazarlar" data-original-title="buraya title yazarlar"><i class="icon-exclamation-sign icon-white"></i> Notifications 
+            <a onclick="resetNotifications();" id="notif" rel="popover" data-content="{{me.ntfData|safe|escape}}" data-original-title="Showing {{me.ntfCount}} new notifications:"><i class="icon-exclamation-sign icon-white"></i> Notifications 
             {%if me.ntfCount > 0%}
-              <span class="badge badge-warning">
+              <span class="badge badge-warning" id="ntfbadge">
                {{me.ntfCount}}
-              </span>
-            {%endif%}
-            </a>
-            </li>
-            <li class="divider-vertical"></li>
-            <li> 
-            <a href="/messages"><i class="icon-envelope icon-white"></i> Messages 
-            {%if me.msgCount > 0%}
-              <span class="badge badge-warning">
-               {{me.msgCount}}
               </span>
             {%endif%}
             </a>
