@@ -256,7 +256,19 @@ def vote(request,n,c,u,m):
   p.notifications.add(ntf)
   item.vote += vote.state
   item.save();
-  return HttpResponse('You successfully voted!')
+  return HttpResponseRedirect('/%s/'%p.user.username)
+
+@login_required
+def remove(request,n,c):
+  myself = me(request)
+  catg =  p.belongings.get(name=c)
+  item = ""
+  for b in catg.boxes.all():
+    if n == b.item.meta.name:
+      catg.boxes.remove(b)
+      break
+  return HttpResponseRedirect('/me/')
+
 
 
 #push notification methods
