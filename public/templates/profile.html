@@ -3,11 +3,21 @@
 {%block custom%}
 <script src="/files/js/equpi.belongings.js"></script>
 <script>
-  function upvote(u,c,n) {
-    $.ajax('/vote/'+n+'/'+c+'/'+u+'/upvote/');
+  function upvote(u,c,n,t) {
+    $.ajax('/vote/'+n+'/'+c+'/'+u+'/upvote/',{success:
+      function(d) {
+        console.log(d);
+        $($($($(t).parent().parent().children()[0]).children()[1]).children().children()[1]).html(d);
+      }
+    });
   }
-  function downvote(u,c,n) {
-    $.ajax('/vote/'+n+'/'+c+'/'+u+'/downvote/');
+  function downvote(u,c,n,t) {
+    $.ajax('/vote/'+n+'/'+c+'/'+u+'/downvote/',{success:
+      function(d) {
+        console.log(d);
+        $($($($(t).parent().parent().children()[0]).children()[1]).children().children()[1]).html(d);
+      }
+    });
   }
 </script>
 {%endblock%}
@@ -16,7 +26,6 @@
     <div class="row-fluid">
         <div class="span3">
             <aside>
-
                 <nav>
                     <ul class="nav">
                       <li>
@@ -161,16 +170,12 @@
                                       <img src="/files/images/icons/heart.png" class="equpi-belongingsElement-love"/>
                                       <p class="equpi-belongingsElement-lovecount">{{i.item.vote}}</p>
                                     </div>
-                                    <div class="pull-right equpi-belongingsElement-lovebox">
-                                      <img src="/files/images/icons/friends.png" class="equpi-belongingsElement-love"/>
-                                      <p class="equpi-belongingsElement-lovecount">100</p>
-                                    </div>
                                   </div>
                                   <p class="equpi-belongingsElement-label">{{i.item.meta.name}}</p>
                                 </div>
                                 <div class="equpi-belongingsElement-controlCol">
-                                  <button id="upvoteElement" class="btn" onclick="upvote('{{p.user.username}}','{{b.name}}','{{i.item.meta.name}}');"><i class="icon-chevron-up"></i></button>
-                                  <button id="doiwnvoteElement" class="btn" onclick="downvote('{{p.user.username}}','{{b.name}}','{{i.item.meta.name}}');"><i class="icon-chevron-down"></i></button>
+                                  <button id="upvoteElement" class="btn" onclick="upvote('{{p.user.username}}','{{b.name}}','{{i.item.meta.name}}', this);"><i class="icon-chevron-up"></i></button>
+                                  <button id="doiwnvoteElement" class="btn" onclick="downvote('{{p.user.username}}','{{b.name}}','{{i.item.meta.name}}', this);"><i class="icon-chevron-down"></i></button>
                                   <button id="commentElement" class="btn"><i class="icon-comment"></i></button>
                                   <button id="buyElement" class="btn"><i class="icon-shopping-cart"></i></button>
                                 </div>

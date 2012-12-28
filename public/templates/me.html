@@ -29,6 +29,11 @@
   $('#loading').hide();
   setInterval('lookup()',1000);
   });
+
+  function remove(u,n,c,t) {
+    $.ajax('/remove/'+u+'/'+n+'/'+c+'/');
+    $(t).parent().parent().fadeOut(300, function() { $(this).remove(); });
+  }
   </script>
 
   <script src="/files/js/equpi.belongings.js"></script>
@@ -200,7 +205,7 @@
                                   <div class="equpi-belongingsElement-controlCol">
                                     <button id="commentElement" class="btn"><i class="icon-comment"></i></button>
                                     <button id="editElement" class="btn"><i class="icon-wrench"></i></button>
-                                    <button id="removeElement" class="btn"><i class="icon-remove"></i></button>
+                                    <button id="removeElement" class="btn" onclick="remove('{{p.user.username}}','{{i.item.meta.name}}','{{b.name}}',this);"><i class="icon-remove"></i></button>
                                   </div>
                                 </div>
                                 {%endfor%}

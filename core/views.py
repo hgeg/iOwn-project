@@ -127,9 +127,8 @@ def add_item(request,cat):
   description = data['description'] if len(data['description'])<141 else "%s..."%data['description'][:137]
 
   me = Person.objects.get(user=request.user.pk)
-  for b in me.belongings.get(name=cat):
-    if name == b.item.name: return HttpResponseRedirect('/me')
-
+  for bo in me.belongings.get(name=cat).boxes.all():
+    if name == bo.item.meta.name: return HttpResponseRedirect('/me')
 
   i = Item.objects.create(meta=b,note=description,photo="/files/image/no_image.jpg");
   i.save()
@@ -237,9 +236,9 @@ def vote(request,n,c,u,m):
     if n == b.item.meta.name:
       item = b.item
       break
-  if item == "": return HttpResponse('An error occured')
+  if item == "": return HttpResponse(status=501)
   vcontent = "%s %sd this item."%(myself.user.username,m)
-  if vcontent in [e.content for e in item.comments.all()]: return HttpResponse('You cannot vote more than one time!') #already voted
+  if vcontent in [e.content for e in item.comments.all()]: return HttpResponse(status=304) #already voted
 
   ovcontent = "%s upvoted this item."%myself.user.username if m == 'downvote' else "%s downvoted this item."%myself.user.username 
   for e in item.comments.all():
@@ -256,20 +255,19 @@ def vote(request,n,c,u,m):
   p.notifications.add(ntf)
   item.vote += vote.state
   item.save();
-  return HttpResponseRedirect('/%s/'%p.user.username)
+  return HttpResponse(item.vote)
 
 @login_required
-def remove(request,n,c):
+def remove(request,u,n,c):
   myself = me(request)
+  p = Person.objects.get(user=User.objects.get(username=u))
   catg =  p.belongings.get(name=c)
   item = ""
   for b in catg.boxes.all():
     if n == b.item.meta.name:
       catg.boxes.remove(b)
       break
-  return HttpResponseRedirect('/me/')
-
-
+  return HttpResponse('Removed')
 
 #push notification methods
 @login_required

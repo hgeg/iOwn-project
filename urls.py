@@ -25,9 +25,8 @@ urlpatterns = patterns('',
     (r'^add/(?P<cat>.*)/$', 'core.views.add_item'),
     (r'^friends/$', 'core.views.friends'),
     (r'^vote/(?P<n>.*)/(?P<c>.*)/(?P<u>.*)/(?P<m>.*)/$', 'core.views.vote'),
-
+    (r'^remove/(?P<u>.*)/(?P<n>.*)/(?P<c>.*)/$', 'core.views.remove'),
     (r'^category:add/$', 'core.views.add_category'),
-
     (r'^me/$', 'core.views.profile'),
     (r'^(?P<user>.*)/$', 'core.views.profile'),
     (r'^files/(?P<path>.*)$', 'django.views.static.serve', {'document_root':settings.MEDIA_ROOT}),
