@@ -33,6 +33,24 @@
             font-size:10px;
             overflow:scroll;
           }
+                /* Set the fixed height of the footer here */
+      #push,
+      #footer {
+        height: 60px;
+      }
+      #footer {
+        background-color: #f5f5f5;
+      }
+
+      /* Lastly, apply responsive CSS fixes as necessary */
+      @media (max-width: 767px) {
+        #footer {
+          margin-left: -20px;
+          margin-right: -20px;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+      }
         </style>
 
         <script type="text/javascript">
@@ -135,9 +153,10 @@
       </div>
     </div>
 
+    <!--footer ends here-->
+
     {%block content%}
     {%endblock%}
-      
     </div>
 
         <!-- Le javascript
@@ -148,6 +167,37 @@
         <script src="/files/bootstrap/js/bootstrap-dropdown.js"></script>
         <script src="/files/bootstrap/js/bootstrap-collapse.js"></script>
 
+        <footer class="footer" style="background-color:#343b3d;">
+          <div class="container" style="margin:0 auto;">
+              <div class="row">
+                  <div class="span2 offset2">
+                      <h4 style="color:white">Equpi</h4>
+                      <ul>
+                          <li><a href="http://equpi.tumblr.com/about-us" style="color:white" target="_blank">About Us</a></li>
+                          <li><a href="https://equpi.uservoice.com/forums/188847-general" style="color:white" target="_blank">Support</a></li>
+                          <li><a href="mailto:info@equpi.com" style="color:white">Contact</a></li>
+                      </ul>
+                  </div>
+                  <div class="span2 offset1">
+                      <h4 style="color:white">Resource</h4>
+                      <ul>
+                          <li><a href="http://equpi.tumblr.com/terms-of-service" style="color:white" target="_blank">Terms of Service</a></li>
+                          <li><a href="http://equpi.tumblr.com/press" style="color:white" target="_blank">Press</a></li>
+                      </ul>
+                  </div>
+                  <div class="span2 offset1">
+                      <h4 style="color:white">Connect</h4>
+                      <ul>
+                          <li><a href="http://equpi.tumblr.com/" title="Blog" style="color:white" target="_blank">Blog</a></li>
+                          <li><a href="https://www.facebook.com/pages/Equpi/431564043573821" title="Facebook" style="color:white" target="_blank">Facebook</a></li>
+                          <li><a href="http://twitter.com/equpiapp" title="Twitter" style="color:white" target="_blank">Twitter</a></li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+        </footer>
 
+      </div>
+    </div>
       </body>
     </html>
