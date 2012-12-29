@@ -175,10 +175,11 @@ def login(request):
     try: n = request.GET['next']
     except: n = ''
     return render_to_response('login.html',{'n':n})
-  usr = request.POST["user"]
+  eml = request.POST["user"]
   pas = request.POST["pass"]
   nxt = request.POST["next"]
-  user = auth.authenticate(username=usr, password=pas)
+  u = User.objects.get(email=eml)
+  user = auth.authenticate(username=u.username, password=pas)
   if user is not None:
     if user.is_active:
       auth.login(request, user)

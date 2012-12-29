@@ -7,7 +7,7 @@
     $.ajax('/vote/'+n+'/'+c+'/'+u+'/upvote/',{success:
       function(d) {
         console.log(d);
-        $(t).closest('.equpi-belongingsElement-lovecount').html(d);
+        $('#item_'+t).html(d);
       }
     });
   }
@@ -15,7 +15,7 @@
     $.ajax('/vote/'+n+'/'+c+'/'+u+'/downvote/',{success:
       function(d) {
         console.log(d);
-        $(t).closest('.equpi-belongingsElement-lovecount').html(d);
+        $('#item_'+t).html(d);
       }
     });
   }
@@ -83,7 +83,7 @@
                       <div class="kpi">{{p.item_count}}</div>
                         <div><small>items shared</small></div>
                     </div>
-                    <div class="span2">
+                    <div class="span8">
                       <div class="kpi">{{p.last_seen}}</div>
                         <div><small>last seen</small></div>
                     </div>
@@ -160,9 +160,9 @@
                                   <p class="equpi-belongingsElement-label">{{i.item.meta.name}}</p>
                                 </div>
                                 <div class="equpi-belongingsElement-controlCol">
-                                  <div class="badge badge-success" id="upvoteElement"  onclick="upvote('{{p.user.username}}','{{b.name}}','{{i.item.meta.name}}', this);"><i class="icon-chevron-up icon-white"></i></div>
-                                  <p class="equpi-belongingsElement-lovecount">{{i.item.vote}}</p>
-                                  <div class="badge badge-important" id="doiwnvoteElement"  onclick="downvote('{{p.user.username}}','{{b.name}}','{{i.item.meta.name}}', this);"><i class="icon-chevron-down icon-white"></i></div>
+                                  <div class="badge badge-success" id="upvoteElement"  onclick="upvote('{{p.user.username}}','{{b.name}}','{{i.item.meta.name}}', {{i.item.id}});"><i class="icon-chevron-up icon-white"></i></div>
+                                  <p id="item_{{i.item.id}}"class="equpi-belongingsElement-lovecount">{{i.item.vote}}</p>
+                                  <div class="badge badge-important" id="doiwnvoteElement"  onclick="downvote('{{p.user.username}}','{{b.name}}','{{i.item.meta.name}}', {{i.item.id}});"><i class="icon-chevron-down icon-white"></i></div>
                                   <!--<button id="commentElement" class="btn"><i class="icon-comment"></i></button>-->
                                   <!--<button id="buyElement" class="btn"><i class="icon-shopping-cart"></i></button>-->
                                 </div>
