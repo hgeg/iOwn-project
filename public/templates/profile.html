@@ -26,28 +26,6 @@
     <div class="row-fluid">
         <div class="span3">
             <aside>
-                <nav>
-                    <ul class="nav">
-                      <li>
-                      <a href="/me/"><i class="icon-home icon-white"></i>Profile</a>
-                      </li>
-                      <li>
-                        <a href="/friends/"><i class="icon-user icon-white"></i>Friends</a>
-                      </li>
-                      <li>
-                      <a href="/activities/"><i class="icon-globe icon-white"></i>Notifications</a>
-                      </li>
-                      <li>
-                        <a href="/search/"><i class="icon-search icon-white"></i>Search Profile</a>
-                      </li>
-                      <li>
-                        <a href=""><i class="icon-random icon-white"></i>View Random Profile</a>
-                      </li>
-                      <li class="selected">
-                      <a href=""><i class="icon-play"></i>{%if p.gender == 'm'%}His{%else%}Her{%endif%} Belongings</a>
-                      </li>
-                    </ul>
-                </nav>
 
                 <nav>
                     <ul class="nav">
@@ -67,6 +45,14 @@
                          <a href="http://facebook.com/{{p.fbuser}}"><img src="/files/images/facebook.png" class="img-rounded"> {{p.user.username}}'s Facebook</a>
                         <a href="http://twitter.com/{{p.twuser}}"><img src="/files/images/twitter.png" class="img-rounded"> {{p.user.username}}'s Twitter</a>
                         </p>
+                      </li>
+                    </ul>
+                    <ul class="nav">
+                      <li>
+                        <a href="/friends/"><i class="icon-user icon-white"></i>Friends</a>
+                      </li>
+                      <li>
+                        <a href=""><i class="icon-random icon-white"></i>View Random Profile</a>
                       </li>
                     </ul>
                 </nav>
