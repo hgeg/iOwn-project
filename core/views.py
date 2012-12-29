@@ -178,7 +178,8 @@ def login(request):
   eml = request.POST["user"]
   pas = request.POST["pass"]
   nxt = request.POST["next"]
-  u = User.objects.get(email=eml)
+  try: u = User.objects.get(email=eml)
+  except: return render_to_response("login.html",{'message':'Invalid username or password'})
   user = auth.authenticate(username=u.username, password=pas)
   if user is not None:
     if user.is_active:
