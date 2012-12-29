@@ -12,21 +12,9 @@ $(function () {
   <div class="row-fluid">
     <div class="span3">
       <aside>
-
-        <nav>
+        <nav style="margin-top:0px; border-top:0px;">
           <ul class="nav">
-            <li class="selected">
-              <a href=""><i class="icon-play"></i>{%if p.gender == 'm'%}His{%else%}Her{%endif%} Belongings</a>
-            </li>
-            <li>
-              <a href=""><i class="icon-user icon-white"></i> View Random Profile</a>
-            </li>
-          </ul>
-        </nav>
-
-        <nav>
-          <ul class="nav">
-            <li>
+            <li style="border-top:0px; border-right:0px; border-left:0px; border-bottom:0px;">
               <img class="avatar avatar-big" src="https://s3.amazonaws.com/equpi/{{p.photo}}" width="100%">
             </li>
             <li>
@@ -42,6 +30,14 @@ $(function () {
                  <a href="http://facebook.com/{{p.fbuser}}"><img src="/files/images/facebook.png" class="img-rounded"> {{p.user.username}}'s Facebook</a>
                  <a href="http://twitter.com/{{p.twuser}}"><img src="/files/images/twitter.png" class="img-rounded"> {{p.user.username}}'s Twitter</a>
               </p>
+            </li>
+          </ul>
+          <ul class="nav">
+            <li>
+              <a href="/friends/"><i class="icon-user icon-white"></i>Friends</a>
+            </li>
+            <li>
+              <a href=""><i class="icon-random icon-white"></i>View Random Profile</a>
             </li>
           </ul>
         </nav>
