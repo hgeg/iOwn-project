@@ -223,13 +223,13 @@
   <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      <h3 id="myModalLabel">Add or Change Item</h3>
+      <h3 id="myModalLabel">Add a new item</h3>
     </div>
     <div class="modal-body">
-      <label>Find existing product:</label>
+      <label>Write down what you want to add:</label>
       <form class="form-inline" method="POST" action="/add/" id="addFrom">
         <fieldset>
-          <input type="text" id="lookupQuery"  autocomplete="off" name="name" placeholder="Type the name...">&nbsp;&nbsp;<img id="loading" src="/files/images/loading.gif"></br>
+          <input type="text" id="lookupQuery"  autocomplete="off" name="name" placeholder="type the product name...">&nbsp;&nbsp;<img id="loading" src="/files/images/loading.gif"></br>
           <br>
           <strong>Suggestions:</strong>
           <ul class="nav nav-list" id="suggestions">
@@ -240,7 +240,7 @@
           <input type="text" value="" name="product" id="product" style="display:none;">
         </fieldset>
       </form>
-      <h4>or</h4>
+      <!--<h4>or</h4>
       <label>Add custom brand:</label>
       <form class="form-horizontal">
         <fieldset>
@@ -255,12 +255,12 @@
               <input name="file" type="file" class="btn">
             </div>
             </div>
-          <!--<img src="/files/images/100x100" name="image" class="img-rounded">
-          <button class="btn">Upload Image</button>-->
+          <img src="/files/images/100x100" name="image" class="img-rounded">
+          <button class="btn">Upload Image</button>
           <br>
         <input type="submit" value="Add" class="btn btn-primary">
         </fieldset>
-      </form>
+      </form>-->
     </div>
     <!--
       <div class="modal-body">
