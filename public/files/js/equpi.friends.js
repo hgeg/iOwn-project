@@ -1,27 +1,21 @@
 $(document).ready(function(){
-	$(".equpi-friends-element").hover(function() {
-		
-		$(this).animate({
-			left: '1%'
-		}, 100);
-		$(".equpi-friends-previewimage").stop(true, true);
+	setelementheight = function() { 
+		$('.equpi-friends-element').each(function(i) {
+			var h = $(this).width() * 0.30;
+			$(this).height(h);
+			$(this).css('margin-top', '12px');
+		});	
+	}
 
-		var hoveredFriend = $(this);
-		var hoveredFriendPreview = hoveredFriend.children(".equpi-friends-details").children(".equpi-friends-preview");
-
-		hoveredFriendPreview.children().each(function(i) {
-			$(this).delay(1000*i).fadeIn(1000);
-		});
-	}, function() {
-		$("*").stop();
-		$(this).animate({
-			left: '0%'
-		}, 100);
-		
-		
-		var hoveredFriend = $(this);
-		var hoveredFriendPreview = hoveredFriend.children(".equpi-friends-details").children(".equpi-friends-preview");
-		$(".equpi-friends-previewimage").not(hoveredFriendPreview.children()).stop(true, true).fadeOut();
-		hoveredFriendPreview.children().stop(true, true).fadeOut();
+	setelementheight();
+	$('.equpi-friends-element').hide();
+	$('.equpi-friends-element').each(function(i) {
+		$(this).delay(i*500).fadeIn(500);
 	});
+
+	
+
+	
+
+	$(window).resize(setelementheight);
 });
