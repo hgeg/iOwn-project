@@ -73,7 +73,6 @@
 
 .equpi-belongings-container {
 	background-color: #fafafa;
-
 	margin: 0px;
 	height: 80%;
 	
@@ -108,13 +107,13 @@
 }
 
 .equpi-belongingsElement-lovecount {	
-	float: left;
 	margin: 0;
 	padding:0;
-	color: black;
-	text-align: right;
-	font-size: 8px;
-	line-height: 10px;
+	width: 100%;
+	color : #333333;
+	text-align: center;
+	font-size: 13px;
+	line-height: 23px;
 }
 
 .equpi-belongingsElement-label {

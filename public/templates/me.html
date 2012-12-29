@@ -34,6 +34,13 @@
     $.ajax('/remove/'+u+'/'+n+'/'+c+'/');
     $(t).parent().parent().slideUp(500, function() { $(this).remove(); });
   }
+
+   $(document).ready(function () {
+      $("i").tooltip({
+        'selector': '',
+        'placement': 'bottom'
+      });
+    });
   </script>
 
   <script src="/files/js/equpi.belongings.js"></script>
@@ -95,8 +102,6 @@
                   <section id="stats">
                     <header>
                       <div class="pull-right">
-                          <a class="btn btn-small">Tweet</a>
-                          <a class="btn btn-small">Share on Facebook</a>
                       </div>
                       <h1>Your  Belongings</h1>
                       
@@ -195,17 +200,13 @@
                                         <img src="/files/images/icons/heart.png" class="equpi-belongingsElement-love"/>
                                         <p class="equpi-belongingsElement-lovecount">{{i.item.vote}}</p>
                                       </div>
-                                      <div class="pull-right equpi-belongingsElement-lovebox">
-                                        <img src="/files/images/icons/friends.png" class="equpi-belongingsElement-love"/>
-                                        <p class="equpi-belongingsElement-lovecount">100</p>
-                                      </div>
                                     </div>
     							                  <p class="equpi-belongingsElement-label">{{i.item.meta.name}}</p>
     						                  </div>
                                   <div class="equpi-belongingsElement-controlCol">
-                                    <button id="commentElement" class="btn"><i class="icon-comment"></i></button>
-                                    <button id="editElement" class="btn"><i class="icon-wrench"></i></button>
-                                    <button id="removeElement" class="btn" onclick="remove('{{p.user.username}}','{{i.item.meta.name}}','{{b.name}}',this);"><i class="icon-remove"></i></button>
+                                    <!--<button id="commentElement" class="btn"><i class="icon-comment"></i></button>-->
+                                    <!--<button id="editElement" class="btn"><i class="icon-wrench"></i></button>-->
+                                   <i class="icon-remove" id="removeElement" rel="tooltip" title="remove" class="btn" onclick="remove('{{p.user.username}}','{{i.item.meta.name}}','{{b.name}}',this);"></i>
                                   </div>
                                 </div>
                                 {%endfor%}

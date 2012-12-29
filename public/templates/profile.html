@@ -7,7 +7,7 @@
     $.ajax('/vote/'+n+'/'+c+'/'+u+'/upvote/',{success:
       function(d) {
         console.log(d);
-        $($($($(t).parent().parent().children()[0]).children()[1]).children().children()[1]).html(d);
+        $(t).closest('.equpi-belongingsElement-lovecount').html(d);
       }
     });
   }
@@ -15,7 +15,7 @@
     $.ajax('/vote/'+n+'/'+c+'/'+u+'/downvote/',{success:
       function(d) {
         console.log(d);
-        $($($($(t).parent().parent().children()[0]).children()[1]).children().children()[1]).html(d);
+        $(t).closest('.equpi-belongingsElement-lovecount').html(d);
       }
     });
   }
@@ -83,8 +83,9 @@
                 <section id="stats">
                   <header>
                     <div class="pull-right">
-                        <a class="btn btn-small">Tweet</a>
-                        <a class="btn btn-small">Share on Facebook</a>
+                        <!--<a class="btn btn-small">Tweet</a>
+                        <a class="btn btn-small">Share on Facebook</a>-->
+                        <a class="btn btn-small">Send Friend Request</a>
                     </div>
                     <h1>{%if p.gender == 'm'%}His{%else%}Her{%endif%} Belongings</h1>
                   </header>
@@ -165,19 +166,20 @@
                               <div class="equpi-belongingsElement">
                                 <div class="equpi-belongingsElement-mainCol">
                                   <img src="{{i.item.meta.image}}" class="equpi-belongingsElement-image"/>
-                                  <div class="equpi-belongingsElement-detailsbox">
+                                  <!--<div class="equpi-belongingsElement-detailsbox">
                                     <div class="pull-right equpi-belongingsElement-lovebox">
                                       <img src="/files/images/icons/heart.png" class="equpi-belongingsElement-love"/>
                                       <p class="equpi-belongingsElement-lovecount">{{i.item.vote}}</p>
                                     </div>
-                                  </div>
+                                  </div>-->
                                   <p class="equpi-belongingsElement-label">{{i.item.meta.name}}</p>
                                 </div>
                                 <div class="equpi-belongingsElement-controlCol">
-                                  <button id="upvoteElement" class="btn" onclick="upvote('{{p.user.username}}','{{b.name}}','{{i.item.meta.name}}', this);"><i class="icon-chevron-up"></i></button>
-                                  <button id="doiwnvoteElement" class="btn" onclick="downvote('{{p.user.username}}','{{b.name}}','{{i.item.meta.name}}', this);"><i class="icon-chevron-down"></i></button>
-                                  <button id="commentElement" class="btn"><i class="icon-comment"></i></button>
-                                  <button id="buyElement" class="btn"><i class="icon-shopping-cart"></i></button>
+                                  <div class="badge badge-success" id="upvoteElement"  onclick="upvote('{{p.user.username}}','{{b.name}}','{{i.item.meta.name}}', this);"><i class="icon-chevron-up icon-white"></i></div>
+                                  <p class="equpi-belongingsElement-lovecount">{{i.item.vote}}</p>
+                                  <div class="badge badge-important" id="doiwnvoteElement"  onclick="downvote('{{p.user.username}}','{{b.name}}','{{i.item.meta.name}}', this);"><i class="icon-chevron-down icon-white"></i></div>
+                                  <!--<button id="commentElement" class="btn"><i class="icon-comment"></i></button>-->
+                                  <!--<button id="buyElement" class="btn"><i class="icon-shopping-cart"></i></button>-->
                                 </div>
                               </div>
                               {%endfor%}
